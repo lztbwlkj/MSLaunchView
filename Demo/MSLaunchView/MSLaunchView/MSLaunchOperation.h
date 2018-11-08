@@ -1,23 +1,25 @@
 //
-//  DHGifImageOperation.h
-//  DHGuidePageHUDExample
+//  MSLaunchOperation.h
+//  MSLaunchView
 //
-//  Created by Apple on 16/10/10.
-//  Copyright © 2016年 dingding3w. All rights reserved.
+//  Created by TuBo on 2018/11/8.
+//  Copyright © 2018 TuBur. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface DHGifImageOperation : UIView
+NS_ASSUME_NONNULL_BEGIN
+
+@interface MSLaunchOperation : UIView
 /**
  *  通过图片Data数据第一个字节来获取图片扩展名(严谨)
  */
-+ (NSString *)dh_contentTypeForImageData:(NSData *)data;
++ (NSString *)ms_contentTypeForImageData:(NSData *)data;
 
 /**
  *  通过图片URL的截取来获取图片的扩展名(不严谨)
  */
-+ (NSString *)dh_contentTypeForImageURL:(NSString *)url;
++ (NSString *)ms_contentTypeForImageURL:(NSString *)url;
 
 /**
  *  自定义播放Gif图片(Path)
@@ -49,3 +51,5 @@
  */
 - (id)initWithFrame:(CGRect)frame gifImageName:(NSString *)gifImageName;
 @end
+
+NS_ASSUME_NONNULL_END

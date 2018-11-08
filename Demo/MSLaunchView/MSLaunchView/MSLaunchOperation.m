@@ -1,28 +1,25 @@
 //
-//  DHGifImageOperation.m
-//  DHGuidePageHUDExample
+//  MSLaunchOperation.m
+//  MSLaunchView
 //
-//  Created by Apple on 16/10/10.
-//  Copyright © 2016年 dingding3w. All rights reserved.
+//  Created by TuBo on 2018/11/8.
+//  Copyright © 2018 TuBur. All rights reserved.
 //
 
-#import "DHGifImageOperation.h"
-#import <ImageIO/ImageIO.h>
-#import <QuartzCore/QuartzCore.h>
-
-@interface DHGifImageOperation ()
-{
+#import "MSLaunchOperation.h"
+@interface MSLaunchOperation(){
     CGImageSourceRef gif;
     NSDictionary *gifProperties;
     size_t index;
     size_t count;
     NSTimer *timer;
 }
+
 @end
 
-@implementation DHGifImageOperation
+@implementation MSLaunchOperation
 #pragma mark - 通过图片Data数据第一个字节来获取图片扩展名
-+ (NSString *)dh_contentTypeForImageData:(NSData *)data {
++ (NSString *)ms_contentTypeForImageData:(NSData *)data {
     uint8_t c;
     [data getBytes:&c length:1];
     switch (c) {
@@ -49,7 +46,7 @@
 }
 
 #pragma mark - 通过图片字符串的截取来获取图片的扩展名
-+ (NSString *)dh_contentTypeForImageURL:(NSString *)url {
++ (NSString *)ms_contentTypeForImageURL:(NSString *)url {
     NSString *extensionName = url.pathExtension;
     if ([extensionName.lowercaseString isEqualToString:@"jpeg"]) {
         return @"jpeg";
@@ -62,6 +59,7 @@
     }
     return nil;
 }
+
 
 #pragma mark - 自定义播放Gif图片(Path)
 - (id)initWithFrame:(CGRect)frame gifImagePath:(NSString *)gifImagePath {
@@ -118,7 +116,7 @@
     if (self) {
         NSString *gifImgName = [gifImageName stringByReplacingOccurrencesOfString:@".gif" withString:@""];
         NSData *gifData      = [NSData dataWithContentsOfFile: [[NSBundle mainBundle] pathForResource:gifImgName ofType:@"gif"]];
-        UIWebView *webView   = [[UIWebView alloc] initWithFrame:frame];
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:frame];
         [webView setBackgroundColor:[UIColor clearColor]];
         [webView setScalesPageToFit:YES];
         [webView.scrollView setScrollEnabled:NO];
