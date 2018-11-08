@@ -29,7 +29,13 @@
     [self.window makeKeyAndVisible];
 //    MSLaunchView *launchView = [MSLaunchView sharedWithStoryboardName:@"Main"  images:@[@"launch1.jpg",@"launch2.jpg",@"launch3"] buttonImage:@"" buttonFrame:CGRectMake(MSScreenW*0.3, MSScreenH*0.8, MSScreenW*0.4, MSScreenH*0.08)];
     
-    MSLaunchView *launchView = [MSLaunchView sharedWithImages:@[@"launch1",@"launch2",@"launch3"]];
+//    MSLaunchView *launchView = [MSLaunchView sharedWithImages:@[@"launch1",@"launch2",@"launch3"]];
+    
+    
+    NSString *path  = [[NSBundle mainBundle]  pathForResource:@"测试" ofType:@"mp4"];
+    NSURL *url = [NSURL fileURLWithPath:path];
+    MSLaunchView *launchView = [MSLaunchView videoWithFrame:CGRectMake(0, 0, MSScreenW, MSScreenH) videoURL:url];
+    
     launchView.nomalColor = [UIColor lightGrayColor];
     launchView.currentColor = [UIColor orangeColor];
     launchView.guideTitle = @"进入当前界面";
@@ -53,7 +59,6 @@
         return btn;
     }];
     
-
     return YES;
 }
 

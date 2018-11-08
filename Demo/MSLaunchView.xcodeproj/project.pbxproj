@@ -15,11 +15,9 @@
 		883E360421941B4000A267E3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E360321941B4000A267E3 /* main.m */; };
 		883E360E21941B4000A267E3 /* MSLaunchViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E360D21941B4000A267E3 /* MSLaunchViewTests.m */; };
 		883E361921941B4000A267E3 /* MSLaunchViewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E361821941B4000A267E3 /* MSLaunchViewUITests.m */; };
-		883E362C21941B6E00A267E3 /* GuideImage.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 883E362721941B6D00A267E3 /* GuideImage.bundle */; };
-		883E362D21941B6E00A267E3 /* DHGuidePageHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E362921941B6D00A267E3 /* DHGuidePageHUD.m */; };
-		883E362E21941B6E00A267E3 /* DHGifImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E362A21941B6E00A267E3 /* DHGifImageOperation.m */; };
 		883E363121941B9900A267E3 /* MSLaunchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E363021941B9900A267E3 /* MSLaunchView.m */; };
 		883E363421941BDE00A267E3 /* MSLaunchOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E363321941BDE00A267E3 /* MSLaunchOperation.m */; };
+		DCBBF55921949DA400B963C3 /* 测试.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DCBBF55821949DA400B963C3 /* 测试.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,15 +54,11 @@
 		883E361421941B4000A267E3 /* MSLaunchViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MSLaunchViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		883E361821941B4000A267E3 /* MSLaunchViewUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSLaunchViewUITests.m; sourceTree = "<group>"; };
 		883E361A21941B4000A267E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		883E362721941B6D00A267E3 /* GuideImage.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GuideImage.bundle; sourceTree = "<group>"; };
-		883E362821941B6D00A267E3 /* DHGifImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHGifImageOperation.h; sourceTree = "<group>"; };
-		883E362921941B6D00A267E3 /* DHGuidePageHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHGuidePageHUD.m; sourceTree = "<group>"; };
-		883E362A21941B6E00A267E3 /* DHGifImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHGifImageOperation.m; sourceTree = "<group>"; };
-		883E362B21941B6E00A267E3 /* DHGuidePageHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHGuidePageHUD.h; sourceTree = "<group>"; };
 		883E362F21941B9900A267E3 /* MSLaunchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSLaunchView.h; sourceTree = "<group>"; };
 		883E363021941B9900A267E3 /* MSLaunchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSLaunchView.m; sourceTree = "<group>"; };
 		883E363221941BDE00A267E3 /* MSLaunchOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSLaunchOperation.h; sourceTree = "<group>"; };
 		883E363321941BDE00A267E3 /* MSLaunchOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSLaunchOperation.m; sourceTree = "<group>"; };
+		DCBBF55821949DA400B963C3 /* 测试.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "测试.mp4"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,16 +109,12 @@
 		883E35F321941B2E00A267E3 /* MSLaunchView */ = {
 			isa = PBXGroup;
 			children = (
+				DCBBF55821949DA400B963C3 /* 测试.mp4 */,
 				883E362621941B4D00A267E3 /* MSLaunchView */,
 				883E35F421941B2E00A267E3 /* AppDelegate.h */,
 				883E35F521941B2E00A267E3 /* AppDelegate.m */,
 				883E35F721941B2E00A267E3 /* ViewController.h */,
 				883E35F821941B2E00A267E3 /* ViewController.m */,
-				883E362B21941B6E00A267E3 /* DHGuidePageHUD.h */,
-				883E362921941B6D00A267E3 /* DHGuidePageHUD.m */,
-				883E362821941B6D00A267E3 /* DHGifImageOperation.h */,
-				883E362A21941B6E00A267E3 /* DHGifImageOperation.m */,
-				883E362721941B6D00A267E3 /* GuideImage.bundle */,
 				883E35FA21941B2E00A267E3 /* Main.storyboard */,
 				883E35FD21941B4000A267E3 /* Assets.xcassets */,
 				883E35FF21941B4000A267E3 /* LaunchScreen.storyboard */,
@@ -267,8 +257,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				883E360121941B4000A267E3 /* LaunchScreen.storyboard in Resources */,
+				DCBBF55921949DA400B963C3 /* 测试.mp4 in Resources */,
 				883E35FE21941B4000A267E3 /* Assets.xcassets in Resources */,
-				883E362C21941B6E00A267E3 /* GuideImage.bundle in Resources */,
 				883E35FC21941B2E00A267E3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,8 +289,6 @@
 				883E363421941BDE00A267E3 /* MSLaunchOperation.m in Sources */,
 				883E35F621941B2E00A267E3 /* AppDelegate.m in Sources */,
 				883E363121941B9900A267E3 /* MSLaunchView.m in Sources */,
-				883E362D21941B6E00A267E3 /* DHGuidePageHUD.m in Sources */,
-				883E362E21941B6E00A267E3 /* DHGifImageOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

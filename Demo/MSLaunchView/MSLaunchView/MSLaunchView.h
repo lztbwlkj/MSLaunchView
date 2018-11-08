@@ -48,9 +48,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIColor *nomalColor;
 
 /**
- 自定义立即体验按钮
- 
- @param btn 自定义按钮块
+ * 自定义立即体验按钮()
+ * 如果使用sharedWithImages:buttonImage:buttonFrame:方法初始化,该方法将会失效
+ * @param btn 自定义按钮块
  */
 -(void)guideBtnCustom:(UIButton *(^)(void))btn;
 
@@ -69,37 +69,37 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @param imageNames 背景图片数组
  *
- *  @return   LaunchIntroductionView对象
+ *  @return   MSLaunchView对象
  */
 +(instancetype)sharedWithImages:(NSArray *)imageNames;
 /**
- *  带按钮的引导页
+ *  带按钮的引导页(如果使用该方法初始化,guideBtnCustom将会失效)
  *
  *  @param imageNames      背景图片数组
  *  @param buttonImageName 按钮的图片
  *  @param frame           按钮的frame
  *
- *  @return LaunchIntroductionView对象
+ *  @return MSLaunchView对象
  */
 +(instancetype)sharedWithImages:(NSArray *)imageNames buttonImage:(NSString *)buttonImageName buttonFrame:(CGRect)frame;
 
 /**
  用storyboard创建的project调用此方法
- @param storyboardName storyboardName
+ @param sbName storyboardName
  @param imageNames 图片名字数组
- @return LaunchIntroductionView对象
+ @return MSLaunchView对象
  */
-+ (instancetype)sharedWithStoryboardName:(NSString *)storyboardName images:(NSArray *)imageNames;
-
++ (instancetype)sharedWithImgSBName:(NSString *)sbName images:(NSArray *)imageNames;
+    
 /**
  用storyboard创建的project调用此方法
- @param storyboardName storyboardName
+ @param sbName storyboardName
  @param imageNames 图片名字数组
- @param buttonImageName 按钮图片名字
+ @param imageName 按钮图片名字
  @param frame 按钮的frame
- @return LaunchIntroductionView对象
+ @return MSLaunchView对象
  */
-+(instancetype)sharedWithStoryboardName:(NSString *)storyboardName images:(NSArray *) imageNames buttonImage:(NSString *)buttonImageName buttonFrame:(CGRect )frame;
++ (instancetype)sharedWithImgSBName:(NSString *)sbName images:(NSArray *)imageNames guidBtnImage:(NSString *)imageName buttonFrame:(CGRect)frame;
 
 
 #pragma 视频引导页
@@ -112,7 +112,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return MSLaunchView对象
  */
-- (instancetype)videoWithFrame:(CGRect)frame videoURL:(NSURL *)videoURL;
++ (instancetype)videoWithFrame:(CGRect)frame videoURL:(NSURL *)videoURL;
 
 
 /**

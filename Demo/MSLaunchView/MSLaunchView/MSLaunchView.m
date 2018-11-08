@@ -23,7 +23,7 @@
 @property (nonatomic, strong) UIButton * skipButton;
 @property (nonatomic, strong) UIButton * guideBtn;
 @property (nonatomic, strong) UIPageControl           *imagePageControl;
-@property (nonatomic, strong) MPMoviePlayerController *playerController;
+@property (nonatomic, strong) AVPlayerViewController *playerController;
 @end
 
 static NSString *const kAppVersion = @"appVersion";
@@ -31,10 +31,13 @@ static NSString *const kAppVersion = @"appVersion";
 NSArray *images;
 BOOL isScrollOut;
 CGRect enterBtnFrame;
+CGRect videoFrame;
 NSString *enterBtnImage;
 static MSLaunchView *launch = nil;
 NSString *storyboard;
+NSURL *videoUrl;
 
+    
 #pragma mark - 创建对象-->>不带button
 +(instancetype)sharedWithImages:(NSArray *)imageNames{
     images = imageNames;
@@ -54,9 +57,9 @@ NSString *storyboard;
     return launch;
 }
 #pragma mark - 用storyboard创建的项目时调用，不带button
-+ (instancetype)sharedWithStoryboardName:(NSString *)storyboardName images:(NSArray *)imageNames {
++ (instancetype)sharedWithImgSBName:(NSString *)sbName images:(NSArray *)imageNames{
     images = imageNames;
-    storyboard = storyboardName;
+    storyboard = sbName;
     isScrollOut = YES;
     launch = [[MSLaunchView alloc] initWithFrame:CGRectMake(0, 0, MSScreenW, MSScreenH)];
     launch.backgroundColor = [UIColor whiteColor];
@@ -64,17 +67,34 @@ NSString *storyboard;
 }
 
 #pragma mark - 用storyboard创建的项目时调用，带button
-+ (instancetype)sharedWithStoryboardName:(NSString *)storyboardName images:(NSArray *)imageNames buttonImage:(NSString *)buttonImageName buttonFrame:(CGRect)frame{
++ (instancetype)sharedWithImgSBName:(NSString *)sbName images:(NSArray *)imageNames guidBtnImage:(NSString *)imageName buttonFrame:(CGRect)frame{
     images = imageNames;
     isScrollOut = NO;
     enterBtnFrame = frame;
-    storyboard = storyboardName;
-    enterBtnImage = buttonImageName;
+    storyboard = sbName;
+    enterBtnImage = imageName;
     launch = [[MSLaunchView alloc] initWithFrame:CGRectMake(0, 0, MSScreenW, MSScreenH)];
     launch.backgroundColor = [UIColor whiteColor];
     return launch;
 }
 
++ (instancetype)videoWithFrame:(CGRect)frame videoURL:(NSURL *)videoURL{
+    videoFrame = frame;
+    isScrollOut = NO;
+    videoUrl = videoURL;
+    launch = [[MSLaunchView alloc] initWithFrame:CGRectMake(0, 0, MSScreenW, MSScreenH)];
+    return launch;
+}
+    
++ (instancetype)videoWithFrame:(CGRect)frame SBName:(NSString *)sbName videoURL:(NSURL *)videoURL{
+    enterBtnFrame = frame;
+    storyboard = sbName;
+    isScrollOut = NO;
+    videoUrl = videoURL;
+    launch = [[MSLaunchView alloc] initWithFrame:CGRectMake(0, 0, MSScreenW, MSScreenH)];
+    return launch;
+}
+    
 #pragma mark - 初始化
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -94,7 +114,11 @@ NSString *storyboard;
             }else {
                 [window addSubview:self];
             }
-            [self addImages];
+            if (videoFrame.size.width || videoFrame.origin.x) {
+                [self addVideo];
+            }else{
+                [self addImages];
+            }
         }else{
             [self removeGuidePageHUD];
         }
@@ -123,6 +147,7 @@ NSString *storyboard;
 -(void)addImages{
     [self createScrollView];
 }
+    
 #pragma mark - 创建滚动视图
 -(void)createScrollView{
     
@@ -187,6 +212,38 @@ NSString *storyboard;
     [self addSubview:self.imagePageControl];
 }
 
+#pragma mark - APP视频新特性页面(新增测试模块内容)
+-(void)addVideo{
+    self.playerController = [[AVPlayerViewController alloc] init];
+    [self.playerController.view setFrame:videoFrame];
+    [self.playerController.view setAlpha:1.0];
+    self.playerController.player = [[AVPlayer alloc] initWithURL:videoUrl];
+    self.playerController.videoGravity = AVLayerVideoGravityResizeAspect;
+    self.playerController.showsPlaybackControls = NO;
+    [self.playerController.player play];
+    [self addSubview:self.playerController.view];
+    
+    launchView = self.playerController.view;
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(hideGuidView) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
+    
+    
+    // 视频引导页进入按钮
+    self.guideBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.guideBtn.frame = CGRectMake(20, MSScreenH-30-40, MSScreenW-40, 40);
+    [self.guideBtn.layer setBorderWidth:1.0];
+    [self.guideBtn.layer setCornerRadius:20.0];
+    [self.guideBtn.layer setBorderColor:[UIColor whiteColor].CGColor];
+    [self.guideBtn setTitle:@"开始体验" forState:UIControlStateNormal];
+    [self.guideBtn setAlpha:0.0];
+    [self.playerController.view addSubview:self.guideBtn];
+    
+    [self.guideBtn addTarget:self action:@selector(enterBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [UIView animateWithDuration:MSHidden_TIME animations:^{
+        [self.guideBtn setAlpha:1.0];
+    }];
+}
+    
 #pragma mark - 跳过按钮的简单设置
 -(void)setSkipTitle:(NSString *)skipTitle{
     [self.skipButton setTitle:skipTitle forState:UIControlStateNormal];
@@ -221,6 +278,9 @@ NSString *storyboard;
 
 #pragma mark - 自定义进入按钮
 -(void)guideBtnCustom:(UIButton *(^)(void))btn{
+    
+    if(enterBtnFrame.size.height || enterBtnFrame.origin.x)return;
+
     //移除当前的体验按钮
     [self.guideBtn removeFromSuperview];
     [launchView addSubview:btn()];
@@ -234,52 +294,20 @@ NSString *storyboard;
 
 #pragma mark - 隐藏引导页
 -(void)hideGuidView{
+
     [UIView animateWithDuration:MSHidden_TIME animations:^{
         self.alpha = 0;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MSHidden_TIME * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self performSelector:@selector(removeGuidePageHUD) withObject:nil afterDelay:1];
         });
     }];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
 }
 
 - (void)removeGuidePageHUD {
     [self removeFromSuperview];
-}
-
-
-#pragma mark - APP视频新特性页面(新增测试模块内容)
-- (instancetype)videoWithFrame:(CGRect)frame videoURL:(NSURL *)videoURL {
-    return [self initWithFrame:frame videoURL:videoURL];
-}
-
--(instancetype)initWithFrame:(CGRect)frame videoURL:(NSURL *)videoURL {
-    if ([super initWithFrame:frame]) {
-        self.playerController = [[MPMoviePlayerController alloc] initWithContentURL:videoURL];
-        [self.playerController.view setFrame:frame];
-        [self.playerController.view setAlpha:1.0];
-        [self.playerController setControlStyle:MPMovieControlStyleNone];
-        [self.playerController setRepeatMode:MPMovieRepeatModeOne];
-        [self.playerController setShouldAutoplay:YES];
-        [self.playerController prepareToPlay];
-        [self addSubview:self.playerController.view];
-        
-        launchView = self.playerController.view;
-        // 视频引导页进入按钮
-        self.guideBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.guideBtn.frame = CGRectMake(20, MSScreenH-30-40, MSScreenW-40, 40);
-        [self.guideBtn.layer setBorderWidth:1.0];
-        [self.guideBtn.layer setCornerRadius:20.0];
-        [self.guideBtn.layer setBorderColor:[UIColor whiteColor].CGColor];
-        [self.guideBtn setTitle:@"开始体验" forState:UIControlStateNormal];
-        [self.guideBtn setAlpha:0.0];
-        [self.playerController.view addSubview:self.guideBtn];
-        
-        [self.guideBtn addTarget:self action:@selector(enterBtnClick) forControlEvents:UIControlEventTouchUpInside];
-        [UIView animateWithDuration:MSHidden_TIME animations:^{
-            [self.guideBtn setAlpha:1.0];
-        }];
-    }
-    return self;
 }
 
 #pragma mark - scrollView Delegate
