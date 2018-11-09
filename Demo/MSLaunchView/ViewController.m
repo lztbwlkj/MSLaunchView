@@ -7,6 +7,9 @@
 //
 
 #import "ViewController.h"
+#import <AVFoundation/AVFoundation.h>
+//#import <MediaPlayer/MediaPlayer.h>
+#import <AVKit/AVKit.h>
 
 @interface ViewController ()
 
@@ -16,7 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+ 
 }
 
 

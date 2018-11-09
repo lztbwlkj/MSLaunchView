@@ -27,21 +27,28 @@
     UIViewController *vc = [[UIViewController alloc] init];
     self.window.rootViewController = vc;
     [self.window makeKeyAndVisible];
-//    MSLaunchView *launchView = [MSLaunchView sharedWithStoryboardName:@"Main"  images:@[@"launch1.jpg",@"launch2.jpg",@"launch3"] buttonImage:@"" buttonFrame:CGRectMake(MSScreenW*0.3, MSScreenH*0.8, MSScreenW*0.4, MSScreenH*0.08)];
     
-//    MSLaunchView *launchView = [MSLaunchView sharedWithImages:@[@"launch1",@"launch2",@"launch3"]];
+    //用StoryBoard创建的项目
+//    NSArray *imageNameArray = @[@"Untitled-4.gif",@"Untitled-6.gif",@"Untitled-7.gif"];
+
+//    MSLaunchView *launchView = [MSLaunchView launchWithImages:imageNameArray sbName:@"" guideFrame:CGRectMake(MSScreenW*0.3, MSScreenH*0.8, MSScreenW*0.4, MSScreenH*0.08) gImage:[UIImage imageNamed:@""]];
+    
+    //没有立即进入按钮
+//    MSLaunchView *launchView = [MSLaunchView launchWithImages:@[@"launch1",@"launch2",@"launch3"]];
     
     
     NSString *path  = [[NSBundle mainBundle]  pathForResource:@"测试" ofType:@"mp4"];
     NSURL *url = [NSURL fileURLWithPath:path];
-    MSLaunchView *launchView = [MSLaunchView videoWithFrame:CGRectMake(0, 0, MSScreenW, MSScreenH) videoURL:url];
-    
-    launchView.nomalColor = [UIColor lightGrayColor];
-    launchView.currentColor = [UIColor orangeColor];
-    launchView.guideTitle = @"进入当前界面";
-    launchView.guideTitleColor = [UIColor redColor];
-    launchView.isHiddenSkipBtn = YES;
+    MSLaunchView *launchView = [MSLaunchView launchWithVideo:CGRectMake(0, 0, MSScreenW, MSScreenH) videoURL:url];
+//    launchView.videoGravity = AVLayerVideoGravityResize;
+//    launchView.nomalColor = [UIColor lightGrayColor];
+//    launchView.currentColor = [UIColor orangeColor];
+//    launchView.guideTitle = @"进入当前界面";
+//    launchView.guideTitleColor = [UIColor redColor];
+//    launchView.isHiddenSkipBtn = YES;
     _launchView = launchView;
+//    launchView.isPalyEndOut = NO;
+    
     
     [launchView guideBtnCustom:^UIButton * _Nonnull{
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -51,13 +58,13 @@
         return btn;
     }];
     
-    [launchView skipBtnCustom:^UIButton * _Nonnull{
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(60, 200, 120, 120);
-        [btn setBackgroundColor:[UIColor blueColor]];
-        [btn addTarget:self action:@selector(hidde) forControlEvents:UIControlEventTouchUpInside];
-        return btn;
-    }];
+//    [launchView skipBtnCustom:^UIButton * _Nonnull{
+//        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        btn.frame = CGRectMake(60, 200, 120, 120);
+//        [btn setBackgroundColor:[UIColor blueColor]];
+//        [btn addTarget:self action:@selector(hidde) forControlEvents:UIControlEventTouchUpInside];
+//        return btn;
+//    }];
     
     return YES;
 }
