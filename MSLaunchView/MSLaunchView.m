@@ -144,7 +144,7 @@ static NSString *const kAppVersion = @"appVersion";
         [[NSUserDefaults standardUserDefaults] synchronize];
         return YES;
     }else{
-        return YES;
+        return NO;
     }
 }
 
