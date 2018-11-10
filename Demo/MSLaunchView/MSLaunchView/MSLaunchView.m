@@ -132,14 +132,14 @@ static NSString *const kAppVersion = @"appVersion";
 
 
 #pragma mark - 判断是不是首次登录或者版本更新
--(BOOL )isFirstLauch{
+-(BOOL)isFirstLauch{
     //获取当前版本号
     NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
     NSString *currentAppVersion = infoDic[@"CFBundleShortVersionString"];
     //获取上次启动应用保存的appVersion
     NSString *version = [[NSUserDefaults standardUserDefaults] objectForKey:kAppVersion];
     //版本升级或首次登录
-    if (version == nil || ![version isEqualToString:currentAppVersion]) {
+    if ([MSLaunchView isBlankString:version] || ![version isEqualToString:currentAppVersion]) {
         [[NSUserDefaults standardUserDefaults] setObject:currentAppVersion forKey:kAppVersion];
         [[NSUserDefaults standardUserDefaults] synchronize];
         return YES;
@@ -180,7 +180,6 @@ static NSString *const kAppVersion = @"appVersion";
             }
         }
     }
-    
     
     [self addSubview:self.skipButton];
     if (self.dataImages.count > 1) {
@@ -296,6 +295,10 @@ static NSString *const kAppVersion = @"appVersion";
 }
 
 - (void)removeGuidePageHUD {
+    //解决第二次进入视屏不显示还能听到声音的BUG
+    if (self.videoUrl) {
+        self.playerController = nil;
+    }
     [self removeFromSuperview];
 }
 

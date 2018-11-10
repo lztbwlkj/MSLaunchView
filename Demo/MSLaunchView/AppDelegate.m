@@ -25,6 +25,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     UIViewController *vc = [[UIViewController alloc] init];
+    vc.view.backgroundColor = [UIColor redColor];
+
     self.window.rootViewController = vc;
     [self.window makeKeyAndVisible];
     
@@ -36,13 +38,13 @@
     //没有立即进入按钮
 //    MSLaunchView *launchView = [MSLaunchView launchWithImages:@[@"launch1",@"launch2",@"launch3"]];
     
-    
+//
     NSString *path  = [[NSBundle mainBundle]  pathForResource:@"测试" ofType:@"mp4"];
     NSURL *url = [NSURL fileURLWithPath:path];
     MSLaunchView *launchView = [MSLaunchView launchWithVideo:CGRectMake(0, 0, MSScreenW, MSScreenH) videoURL:url];
 //    launchView.videoGravity = AVLayerVideoGravityResize;
-//    launchView.nomalColor = [UIColor lightGrayColor];
-//    launchView.currentColor = [UIColor orangeColor];
+    launchView.nomalColor = [UIColor lightGrayColor];
+    launchView.currentColor = [UIColor orangeColor];
 //    launchView.guideTitle = @"进入当前界面";
 //    launchView.guideTitleColor = [UIColor redColor];
 //    launchView.isHiddenSkipBtn = YES;
@@ -50,13 +52,13 @@
 //    launchView.isPalyEndOut = NO;
     
     
-    [launchView guideBtnCustom:^UIButton * _Nonnull{
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(60, 60, 120, 120);
-        [btn setBackgroundColor:[UIColor redColor]];
-        [btn addTarget:self action:@selector(hidde) forControlEvents:UIControlEventTouchUpInside];
-        return btn;
-    }];
+//    [launchView guideBtnCustom:^UIButton * _Nonnull{
+//        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        btn.frame = CGRectMake(60, 60, 120, 120);
+//        [btn setBackgroundColor:[UIColor redColor]];
+//        [btn addTarget:self action:@selector(hidde) forControlEvents:UIControlEventTouchUpInside];
+//        return btn;
+//    }];
     
 //    [launchView skipBtnCustom:^UIButton * _Nonnull{
 //        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
