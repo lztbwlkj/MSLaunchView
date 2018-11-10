@@ -9,10 +9,10 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "MSLaunchView"
-  spec.version      = "0.0.1"
-  spec.summary      = "一行代码可集成性能强大的轮播引导页面，支持GIF,短视频"
+  spec.version      = "0.0.2"
+  spec.summary      = "一行代码可集成性能强大的APP启动引导页，不仅支持普通格式的图片,还支持GIF,短视频"
   spec.description  = <<-DESC
-       一键合成APP引导页，包含不同状态下的引导页操作方式,同时支持动态图片引导页和静态图片引导页,支持跳过按钮，立即体验按钮完全自定义
+       一行代码合成APP引导页，包含不同状态下的引导页操作方式,同时支持动态图片引导页和静态图片引导页,支持单个视频播放,同事支持跳过按钮,立即体验按钮完全自定义,欢迎大家来使用！
              DESC
 
 
@@ -88,8 +88,8 @@ Pod::Spec.new do |spec|
   #  the lib prefix of their name.
   #
 
-   spec.framework  = "UIKit"
-  # spec.frameworks = "SomeFramework", "AnotherFramework"
+  # spec.framework  = ""
+    spec.frameworks = "UIKit","AVFoundation","AVKit"
 
   # spec.library   = "iconv"
   # spec.libraries = "iconv", "xml2"
