@@ -11,7 +11,7 @@
 <th>自动进入体验</th>
 </tr>
 <tr>
-<td><img src="https://github.com/lztbwlkj/MSLaunchView/tree/master/Demo/MSLaunchView/DesignSketchGIF/Untitled-1.gif" width="300"></td>
+<td><img src="https://github.com/lztbwlkj/MSLaunchView/Demo/MSLaunchView/DesignSketchGIF/Untitled-1.gif" width="300"></td>
 <td><img src="https://github.com/lztbwlkj/MSLaunchView/tree/master/Demo/MSLaunchView/DesignSketchGIF/Untitled-2.gif" width="300"></td>
 </tr>
 <tr>
