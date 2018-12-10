@@ -174,7 +174,7 @@ static NSString *const kAppVersion = @"appVersion";
             launchView = imageView;
             
             //判断要不要添加button
-            if (!isScrollOut) {
+            if (!self.isScrollOut) {
                 [imageView setUserInteractionEnabled:YES];
                 [imageView addSubview:self.guideButton];
             }
@@ -316,7 +316,7 @@ static NSString *const kAppVersion = @"appVersion";
     
     if (cuttentIndex == self.dataImages.count - 1) {
         if ([self isScrolltoLeft:scrollView]) {
-            if (!isScrollOut) {
+            if (!self.isScrollOut) {
                 return ;
             }
             [self hideGuidView];
