@@ -21,7 +21,7 @@
     //
     CGFloat oldlastContentOffset;
     CGFloat newlastContentOffset;
-    BOOL isScrollOut;//是否左滑推出
+    BOOL _isScrollOut;//是否左滑推出
     CGRect guideFrame;//
     CGRect videoFrame;
     UIImage *gbgImage;//按钮背景图片
@@ -102,7 +102,7 @@ static NSString *const kAppVersion = @"appVersion";
         videoFrame = frame;
         guideFrame = gframe;
         gbgImage = gImage;
-        isScrollOut = isScrollOut;
+        _isScrollOut = isScrollOut;
         self.isPalyEndOut = YES;
         self.videoGravity = AVLayerVideoGravityResizeAspectFill;
         
