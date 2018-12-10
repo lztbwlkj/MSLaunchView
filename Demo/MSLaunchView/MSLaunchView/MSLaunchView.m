@@ -21,7 +21,7 @@
     //
     CGFloat oldlastContentOffset;
     CGFloat newlastContentOffset;
-    BOOL _isScrollOut;//是否左滑推出
+    
     CGRect guideFrame;//
     CGRect videoFrame;
     UIImage *gbgImage;//按钮背景图片
@@ -32,7 +32,7 @@
 @property (nonatomic, strong) AVPlayerViewController  *playerController;//视频播放
 @property (nonatomic, copy) NSMutableArray<NSString *> *dataImages; //图片数据
 @property (nonatomic, strong) NSURL *videoUrl;
-
+@property (nonatomic, assign) BOOL isScrollOut;//是否左滑推出
 @end
 
 static NSString *const kAppVersion = @"appVersion";
@@ -102,7 +102,7 @@ static NSString *const kAppVersion = @"appVersion";
         videoFrame = frame;
         guideFrame = gframe;
         gbgImage = gImage;
-        _isScrollOut = isScrollOut;
+        self.isScrollOut = isScrollOut;
         self.isPalyEndOut = YES;
         self.videoGravity = AVLayerVideoGravityResizeAspectFill;
         
