@@ -21,18 +21,18 @@
     //
     CGFloat oldlastContentOffset;
     CGFloat newlastContentOffset;
-    BOOL _isScrollOut;//是否左滑推出
+    
     CGRect guideFrame;//
     CGRect videoFrame;
     UIImage *gbgImage;//按钮背景图片
 }
 @property (nonatomic, strong) UIButton *skipButton;//跳过按钮
 @property (nonatomic, strong) UIButton *guideButton;//立即进入按钮
-@property (nonatomic, strong) UIPageControl        *imagePageControl;
+@property (nonatomic, strong) UIPageControl           *imagePageControl;
 @property (nonatomic, strong) AVPlayerViewController  *playerController;//视频播放
 @property (nonatomic, copy) NSMutableArray<NSString *> *dataImages; //图片数据
 @property (nonatomic, strong) NSURL *videoUrl;
-
+@property (nonatomic, assign) BOOL isScrollOut;//是否左滑推出
 @end
 
 static NSString *const kAppVersion = @"appVersion";
@@ -102,7 +102,7 @@ static NSString *const kAppVersion = @"appVersion";
         videoFrame = frame;
         guideFrame = gframe;
         gbgImage = gImage;
-        _isScrollOut = isScrollOut;
+        self.isScrollOut = isScrollOut;
         self.isPalyEndOut = YES;
         self.videoGravity = AVLayerVideoGravityResizeAspectFill;
         
@@ -174,7 +174,7 @@ static NSString *const kAppVersion = @"appVersion";
             launchView = imageView;
             
             //判断要不要添加button
-            if (!_isScrollOut) {
+            if (!self.isScrollOut) {
                 [imageView setUserInteractionEnabled:YES];
                 [imageView addSubview:self.guideButton];
             }
@@ -316,7 +316,7 @@ static NSString *const kAppVersion = @"appVersion";
     
     if (cuttentIndex == self.dataImages.count - 1) {
         if ([self isScrolltoLeft:scrollView]) {
-            if (!_isScrollOut) {
+            if (!self.isScrollOut) {
                 return ;
             }
             [self hideGuidView];
@@ -405,8 +405,6 @@ static NSString *const kAppVersion = @"appVersion";
         imagePageControl;
     }));
 }
-
-
 
 #pragma mark - 视频播放VC
 -(AVPlayerViewController *)playerController{
