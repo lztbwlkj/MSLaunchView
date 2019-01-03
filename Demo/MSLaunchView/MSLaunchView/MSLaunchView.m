@@ -28,7 +28,7 @@
 }
 @property (nonatomic, strong) UIButton *skipButton;//跳过按钮
 @property (nonatomic, strong) UIButton *guideButton;//立即进入按钮
-@property (nonatomic, strong) UIPageControl           *imagePageControl;
+@property (nonatomic, strong) UIPageControl        *imagePageControl;
 @property (nonatomic, strong) AVPlayerViewController  *playerController;//视频播放
 @property (nonatomic, copy) NSMutableArray<NSString *> *dataImages; //图片数据
 @property (nonatomic, strong) NSURL *videoUrl;
@@ -174,7 +174,7 @@ static NSString *const kAppVersion = @"appVersion";
             launchView = imageView;
             
             //判断要不要添加button
-            if (!isScrollOut) {
+            if (!_isScrollOut) {
                 [imageView setUserInteractionEnabled:YES];
                 [imageView addSubview:self.guideButton];
             }
@@ -316,7 +316,7 @@ static NSString *const kAppVersion = @"appVersion";
     
     if (cuttentIndex == self.dataImages.count - 1) {
         if ([self isScrolltoLeft:scrollView]) {
-            if (!isScrollOut) {
+            if (!_isScrollOut) {
                 return ;
             }
             [self hideGuidView];
@@ -405,6 +405,8 @@ static NSString *const kAppVersion = @"appVersion";
         imagePageControl;
     }));
 }
+
+
 
 #pragma mark - 视频播放VC
 -(AVPlayerViewController *)playerController{
