@@ -11,6 +11,14 @@
 #import <AVKit/AVKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+typedef enum {
+    kMSPageContolStyleClassic,        // 系统自带经典样式
+    kMSPageContolStyleAnimated,       // 动画效果pagecontrol
+    kMSPageContolStyleCustomer,       // 自定义动画效果pagecontrol
+    kMSPageContolStyleNone            // 不显示pagecontrol
+} kMSPageContolStyle;
+
+
 @interface MSLaunchView : UIView
 
 
@@ -41,18 +49,60 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - >>PageControl属性简单设置
 /**
- *  选中page的指示器颜色，默认白色
+ 定制PageControl的样式 继承MSAbstractDotView类可自行定义pageControl的样式、动画；
+ ⚠️：如果调用该属性自定义了pageControl的样式，则关于pageControl颜色属性将失效；
  */
-@property (nonatomic, strong) UIColor *currentColor;
+@property (nonatomic) Class dotViewClass;
 /**
- *  其他状态下的指示器的颜色，默认lightGrayColor
+ pagecontrol 样式，默认为动画样式
  */
-@property (nonatomic, strong) UIColor *nomalColor;
+@property (nonatomic, assign) kMSPageContolStyle pageControlStyle;
+/**
+ 是否显示PageControl
+ */
+@property (nonatomic, assign) BOOL showPageControl;
 
 /**
-    是否显示PageControl
+ 是否在只有一张图时隐藏pagecontrol，默认为YES
  */
-@property (nonatomic, assign) BOOL isHiddenPageControl;
+@property(nonatomic) BOOL hidesForSinglePage;
+
+/**
+ 相邻两个小圆点间的间隔大小 Default is 8.
+ */
+@property (nonatomic,assign) CGFloat spacingBetweenDots;
+
+/**
+ 分页控件距离轮播图的下边间距（在默认间距基础上）的偏移量 默认为15；
+ */
+@property (nonatomic, assign) CGFloat pageControlBottomOffset;
+
+/**
+ 分页控件小圆标大小
+ */
+@property (nonatomic, assign) CGSize pageControlDotSize;
+
+/**
+ 当前分页控件小圆标颜色 ⚠️：如果调用了dotViewClass的属性，则该属性失效
+ */
+@property (nonatomic, strong) UIColor *currentPageDotColor;
+
+/**
+ 其他分页控件小圆标颜色 ⚠️：如果调用了dotViewClass的属性，则该属性失效
+ */
+@property (nonatomic, strong) UIColor *pageDotColor;
+
+/**
+ 当前分页控件小圆标图片 ⚠️：如果调用了dotViewClass的属性，则该属性失效
+ */
+@property (nonatomic, strong) UIImage *currentPageDotImage;
+
+/**
+ 其他分页控件小圆标图片 ⚠️：如果调用了dotViewClass的属性，则该属性失效
+ */
+@property (nonatomic, strong) UIImage *pageDotImage;
+
+
 
 /**
  * 自定义立即体验按钮()

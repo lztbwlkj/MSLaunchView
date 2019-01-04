@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MSLaunchView.h"
-
+#import "MSExampleDotView.h"
 #define MSScreenW   [UIScreen mainScreen].bounds.size.width
 #define MSScreenH   [UIScreen mainScreen].bounds.size.height
 @interface AppDelegate (){
@@ -31,34 +31,42 @@
     [self.window makeKeyAndVisible];
     
     //用StoryBoard创建的项目
-//    NSArray *imageNameArray = @[@"Untitled-4.gif",@"Untitled-6.gif",@"Untitled-7.gif"];
+    NSArray *imageNameArray = @[@"Untitled-4.gif",@"Untitled-6.gif",@"Untitled-7.gif"];
 
 //    MSLaunchView *launchView = [MSLaunchView launchWithImages:imageNameArray sbName:@"" guideFrame:CGRectMake(MSScreenW*0.3, MSScreenH*0.8, MSScreenW*0.4, MSScreenH*0.08) gImage:[UIImage imageNamed:@""]];
     
     //没有立即进入按钮
-//    MSLaunchView *launchView = [MSLaunchView launchWithImages:@[@"launch1",@"launch2",@"launch3"]];
+    MSLaunchView *launchView = [MSLaunchView launchWithImages:imageNameArray];
     
+    launchView.pageControlStyle = kMSPageContolStyleCustomer;
 //
-    NSString *path  = [[NSBundle mainBundle]  pathForResource:@"测试" ofType:@"mp4"];
-    NSURL *url = [NSURL fileURLWithPath:path];
-    MSLaunchView *launchView = [MSLaunchView launchWithVideo:CGRectMake(0, 0, MSScreenW, MSScreenH) videoURL:url];
+//    NSString *path  = [[NSBundle mainBundle]  pathForResource:@"测试" ofType:@"mp4"];
+//    NSURL *url = [NSURL fileURLWithPath:path];
+//    MSLaunchView *launchView = [MSLaunchView launchWithVideo:CGRectMake(0, 0, MSScreenW, MSScreenH) videoURL:url];
 //    launchView.videoGravity = AVLayerVideoGravityResize;
-    launchView.nomalColor = [UIColor lightGrayColor];
-    launchView.currentColor = [UIColor orangeColor];
+    
+    launchView.pageDotColor = [UIColor lightGrayColor];
+    launchView.currentPageDotColor = [UIColor orangeColor];
+    
 //    launchView.guideTitle = @"进入当前界面";
 //    launchView.guideTitleColor = [UIColor redColor];
-//    launchView.isHiddenSkipBtn = YES;
+//    launchView.showPageControl = NO;
+    launchView.dotViewClass = [MSExampleDotView class];
+    //pageControl的间距大小
+//    launchView.spacingBetweenDots = 15;
+//    launchView.pageControlBottomOffset += 20;
     _launchView = launchView;
 //    launchView.isPalyEndOut = NO;
     
     
-//    [launchView guideBtnCustom:^UIButton * _Nonnull{
-//        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        btn.frame = CGRectMake(60, 60, 120, 120);
-//        [btn setBackgroundColor:[UIColor redColor]];
-//        [btn addTarget:self action:@selector(hidde) forControlEvents:UIControlEventTouchUpInside];
-//        return btn;
-//    }];
+    [launchView guideBtnCustom:^UIButton * _Nonnull{
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(60, 60, 130, 60);
+        [btn setBackgroundColor:[UIColor redColor]];
+        [btn setTitle:@"立即体验" forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(hidde) forControlEvents:UIControlEventTouchUpInside];
+        return btn;
+    }];
     
 //    [launchView skipBtnCustom:^UIButton * _Nonnull{
 //        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];

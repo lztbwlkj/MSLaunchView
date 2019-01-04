@@ -25,6 +25,9 @@
 		88532165219943290054D188 /* Untitled-1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8853215B219943290054D188 /* Untitled-1.gif */; };
 		88532166219943290054D188 /* Untitled-2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8853215C219943290054D188 /* Untitled-2.gif */; };
 		88532167219943290054D188 /* Untitled-3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8853215D219943290054D188 /* Untitled-3.gif */; };
+		8874E50021DF382300628121 /* MSPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8874E4FE21DF382300628121 /* MSPageControl.m */; };
+		8874E50121DF382300628121 /* MSAnimatedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8874E4FF21DF382300628121 /* MSAnimatedDotView.m */; };
+		8874E50421DF402500628121 /* MSExampleDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8874E50321DF402500628121 /* MSExampleDotView.m */; };
 		DC71C75421BEC271009720FD /* MSLaunchView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC71C75021BEC271009720FD /* MSLaunchView.m */; };
 		DC71C75521BEC271009720FD /* MSLaunchOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DC71C75121BEC271009720FD /* MSLaunchOperation.m */; };
 		DCBBF55921949DA400B963C3 /* 测试.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DCBBF55821949DA400B963C3 /* 测试.mp4 */; };
@@ -74,6 +77,12 @@
 		8853215B219943290054D188 /* Untitled-1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Untitled-1.gif"; sourceTree = "<group>"; };
 		8853215C219943290054D188 /* Untitled-2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Untitled-2.gif"; sourceTree = "<group>"; };
 		8853215D219943290054D188 /* Untitled-3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Untitled-3.gif"; sourceTree = "<group>"; };
+		8874E4FC21DF382300628121 /* MSPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPageControl.h; sourceTree = "<group>"; };
+		8874E4FD21DF382300628121 /* MSAnimatedDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSAnimatedDotView.h; sourceTree = "<group>"; };
+		8874E4FE21DF382300628121 /* MSPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPageControl.m; sourceTree = "<group>"; };
+		8874E4FF21DF382300628121 /* MSAnimatedDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSAnimatedDotView.m; sourceTree = "<group>"; };
+		8874E50221DF402500628121 /* MSExampleDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSExampleDotView.h; sourceTree = "<group>"; };
+		8874E50321DF402500628121 /* MSExampleDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSExampleDotView.m; sourceTree = "<group>"; };
 		DC71C75021BEC271009720FD /* MSLaunchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSLaunchView.m; sourceTree = "<group>"; };
 		DC71C75121BEC271009720FD /* MSLaunchOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSLaunchOperation.m; sourceTree = "<group>"; };
 		DC71C75221BEC271009720FD /* MSLaunchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSLaunchView.h; sourceTree = "<group>"; };
@@ -136,6 +145,8 @@
 				883E35F521941B2E00A267E3 /* AppDelegate.m */,
 				883E35F721941B2E00A267E3 /* ViewController.h */,
 				883E35F821941B2E00A267E3 /* ViewController.m */,
+				8874E50221DF402500628121 /* MSExampleDotView.h */,
+				8874E50321DF402500628121 /* MSExampleDotView.m */,
 				883E35FA21941B2E00A267E3 /* Main.storyboard */,
 				883E35FD21941B4000A267E3 /* Assets.xcassets */,
 				883E35FF21941B4000A267E3 /* LaunchScreen.storyboard */,
@@ -180,9 +191,21 @@
 			path = DesignSketchGIF;
 			sourceTree = "<group>";
 		};
+		8874E4FB21DF382300628121 /* PageControl */ = {
+			isa = PBXGroup;
+			children = (
+				8874E4FC21DF382300628121 /* MSPageControl.h */,
+				8874E4FE21DF382300628121 /* MSPageControl.m */,
+				8874E4FD21DF382300628121 /* MSAnimatedDotView.h */,
+				8874E4FF21DF382300628121 /* MSAnimatedDotView.m */,
+			);
+			path = PageControl;
+			sourceTree = "<group>";
+		};
 		DC71C74F21BEC271009720FD /* MSLaunchView */ = {
 			isa = PBXGroup;
 			children = (
+				8874E4FB21DF382300628121 /* PageControl */,
 				DC71C75221BEC271009720FD /* MSLaunchView.h */,
 				DC71C75021BEC271009720FD /* MSLaunchView.m */,
 				DC71C75321BEC271009720FD /* MSLaunchOperation.h */,
@@ -333,9 +356,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				883E35F921941B2E00A267E3 /* ViewController.m in Sources */,
+				8874E50121DF382300628121 /* MSAnimatedDotView.m in Sources */,
 				883E360421941B4000A267E3 /* main.m in Sources */,
+				8874E50421DF402500628121 /* MSExampleDotView.m in Sources */,
 				883E35F621941B2E00A267E3 /* AppDelegate.m in Sources */,
 				DC71C75521BEC271009720FD /* MSLaunchOperation.m in Sources */,
+				8874E50021DF382300628121 /* MSPageControl.m in Sources */,
 				DC71C75421BEC271009720FD /* MSLaunchView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
