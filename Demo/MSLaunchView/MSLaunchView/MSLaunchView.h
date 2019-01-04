@@ -53,10 +53,12 @@ typedef enum {
  ⚠️：如果调用该属性自定义了pageControl的样式，则关于pageControl颜色属性将失效；
  */
 @property (nonatomic) Class dotViewClass;
+
 /**
  pagecontrol 样式，默认为动画样式
  */
 @property (nonatomic, assign) kMSPageContolStyle pageControlStyle;
+
 /**
  是否显示PageControl
  */
@@ -101,8 +103,6 @@ typedef enum {
  其他分页控件小圆标图片 ⚠️：如果调用了dotViewClass的属性，则该属性失效
  */
 @property (nonatomic, strong) UIImage *pageDotImage;
-
-
 
 /**
  * 自定义立即体验按钮()

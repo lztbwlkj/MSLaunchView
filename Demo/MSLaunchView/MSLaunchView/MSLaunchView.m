@@ -170,6 +170,7 @@ static NSString *const kAppVersion = @"appVersion";
 
 #pragma mark - 创建滚动视图、添加引导页图片
 -(void)addImages{
+    
     UIScrollView *launchScrollView = [[UIScrollView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     launchScrollView.showsHorizontalScrollIndicator = NO;
     launchScrollView.bounces = NO;
