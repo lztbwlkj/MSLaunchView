@@ -28,16 +28,11 @@ NS_ASSUME_NONNULL_BEGIN
  * Dot view customization properties
  */
 
-/**
- dot视图自定义属性
- */
-@property (nonatomic) Class dotViewClass;
 
 /**
  *  其他页面小圆点的图片
  */
 @property (nonatomic,strong) UIImage *dotImage;
-
 
 /**
  *  当前页面小圆点的图片

@@ -11,16 +11,36 @@
 #import <AVKit/AVKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
+#define kisFirstLaunch [MSLaunchView isFirstLaunch]
+
+@class MSLaunchView;
+
 typedef enum {
     kMSPageContolStyleClassic,        // 系统自带经典样式
     kMSPageContolStyleAnimated,       // 动画效果pagecontrol
-    kMSPageContolStyleCustomer,       // 自定义动画效果pagecontrol
     kMSPageContolStyleNone            // 不显示pagecontrol
 } kMSPageContolStyle;
 
+typedef void (^launchViewLoadFinish)(MSLaunchView *launchView);
+
+@protocol MSLaunchViewDeleagte <NSObject>
+
+-(void)launchViewLoadFinish:(MSLaunchView *)launchView;
+
+@end
 
 @interface MSLaunchView : UIView
 
+/**
+ 加载完成的代理
+ */
+@property (nonatomic, weak) id <MSLaunchViewDeleagte> delegate;
+
+/**
+    加载完成Block回调
+ */
+@property (nonatomic, copy) launchViewLoadFinish loadFinishBlock;
 
 /**
  立即体验按钮的标题设置 默认“立即体验” 比较简陋 可以使用guideBtnCustom:自行定义
@@ -33,6 +53,11 @@ typedef enum {
 @property (nonatomic, strong) UIColor *guideTitleColor;
 
 /**
+ 立即体验按钮文字字体
+ */
+@property (nonatomic, strong) UIFont *guideTitleFont;
+
+/**
  跳过按钮文字 比较简陋 可以使用skipBtnCustom:自行定义样式
  */
 @property (nonatomic, copy) NSString *skipTitle;
@@ -40,7 +65,22 @@ typedef enum {
 /**
  跳过按钮背景颜色
  */
-@property (nonatomic, strong) UIColor *skipBackgroundClolr;
+@property (nonatomic, strong) UIColor *skipBackgroundColor;
+
+/**
+ 跳过按钮背景图片
+ */
+@property (nonatomic, strong) UIImage *skipBackgroundImage;
+
+/**
+ 跳过按钮文字颜色
+ */
+@property (nonatomic, strong) UIColor *skipTitleColor;
+
+/**
+ 跳过按钮文字字体
+ */
+@property (nonatomic, strong) UIFont *skipTitleFont;
 
 /**
  是否隐藏跳过按钮
@@ -48,11 +88,6 @@ typedef enum {
 @property (nonatomic, assign) BOOL isHiddenSkipBtn;
 
 #pragma mark - >>PageControl属性简单设置
-/**
- 定制PageControl的样式 继承MSAbstractDotView类可自行定义pageControl的样式、动画；
- ⚠️：如果调用该属性自定义了pageControl的样式，则关于pageControl颜色属性将失效；
- */
-@property (nonatomic) Class dotViewClass;
 
 /**
  pagecontrol 样式，默认为动画样式
@@ -111,7 +146,6 @@ typedef enum {
  */
 -(void)guideBtnCustom:(UIButton *(^)(void))btn;
 
-
 /**
  自定义跳过按钮
 
@@ -119,34 +153,37 @@ typedef enum {
  */
 -(void)skipBtnCustom:(UIButton *(^)(void))btn;
 
+
+
 #pragma mark ----可自动识别动态图片和静态图片
 #pragma 图片引导页
 /**
- *  不带按钮的引导页，滑动到最后一页，再向右滑直接隐藏引导页
- *
- *  @param images 背景图片数组
- *
- *  @return   MSLaunchView对象
+ APP 是否是首次进入
+ 
+ @return YES 是首次进入（首次进入定义：APP第一次安装打开或者版本更新后第一次进入）
  */
-+(instancetype)launchWithImages:(NSArray <NSString *>*)images;
++ (BOOL)isFirstLaunch;
+
+/**
+ 不带按钮的引导页，滑动到最后一页，再向右滑直接隐藏引导页
+
+ @param images 背景图片数组（支持gif）
+ @param isScrollOut 最后一页面是否自动退出
+ @return MSLaunchView对象
+ */
++(instancetype) launchWithImages:(NSArray <NSString *>*)images isScrollOut:(BOOL)isScrollOut;
+
 /**
  *  带按钮的引导页(如果使用该方法初始化,guideBtnCustom将会失效)
  *
  *  @param images 背景图片数组
  *  @param gframe 按钮的frame
  *  @param gImage 按钮的图片
- *
+ *  @param isScrollOut 是否最后一页左滑自动退出
  *  @return MSLaunchView对象
  */
-+(instancetype)launchWithImages:(NSArray <NSString *>*)images guideFrame:(CGRect)gframe  gImage:(UIImage *)gImage;
++(instancetype) launchWithImages:(NSArray <NSString *>*)images guideFrame:(CGRect)gframe gImage:(UIImage *)gImage isScrollOut:(BOOL)isScrollOut;
 
-/**
- 用storyboard创建的project调用此方法
- @param images 图片名字数组
- @param sbName storyboardName 默认为@"Main"
- @return MSLaunchView对象
- */
-+(instancetype)launchWithImages:(NSArray <NSString *>*)images sbName:(NSString *)sbName;
     
 /**
  * 用storyboard创建的project调用此方法
@@ -155,10 +192,19 @@ typedef enum {
  * @param sbName storyboardName 默认为@"Main"
  * @param gframe 按钮的frame
  * @param gImage 按钮图片名字
+ * @param isScrollOut 是否最后一页左滑自动退出
  * @return MSLaunchView对象
  */
-+(instancetype)launchWithImages:(NSArray <NSString *>*)images sbName:(NSString *)sbName guideFrame:(CGRect)gframe gImage:(UIImage *)gImage;
++(instancetype) launchWithImages:(NSArray <NSString *>*)images sbName:(NSString *)sbName guideFrame:(CGRect)gframe gImage:(UIImage *)gImage isScrollOut:(BOOL)isScrollOut;
+/**
+ 用storyboard创建的project调用此方法(不带t立即体验按钮)
 
+ @param images 图片名字数组
+ @param sbName storyboardName 默认为@"Main"
+ @param isScrollOut 是否最后一页左滑自动退出
+ @return MSLaunchView对象
+ */
++(instancetype)launchWithImages:(NSArray <NSString *>*)images sbName:(NSString *)sbName isScrollOut:(BOOL)isScrollOut;
 
 #pragma 视频引导页 目前仅支持单个视频
 
@@ -222,6 +268,8 @@ typedef enum {
  隐藏引导页面
  */
 -(void)hideGuidView;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

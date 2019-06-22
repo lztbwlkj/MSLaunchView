@@ -9,7 +9,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "MSLaunchView"
-  spec.version      = "0.0.7"
+  spec.version      = "0.0.8"
   spec.summary      = "一行代码可集成性能强大的APP启动引导页，不仅支持普通格式的图片,还支持GIF,短视频,不会让你失望的！"
   spec.description  = <<-DESC
        一行代码合成APP引导页，包含不同状态下的引导页操作方式,同时支持动态图片引导页和静态图片引导页,支持单个视频播放,同事支持跳过按钮,立即体验按钮完全自定义,欢迎大家来使用！
@@ -27,8 +27,8 @@ Pod::Spec.new do |spec|
   #  Popular ones are 'MIT', 'BSD' and 'Apache License, Version 2.0'.
   #
 
-  # spec.license      = "MIT"
-    spec.license      = { :type => "MIT", :file => "LICENSE" }
+   spec.license      = "MIT"
+  #  spec.license      = { :type => "MIT", :file => "LICENSE" }
 
      spec.author             = { "lztbwlkj" => "lztbwlkj@gmail.com" }
   # Or just: spec.author    = "lztbwlkj"

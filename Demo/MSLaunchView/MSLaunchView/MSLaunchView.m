@@ -9,7 +9,6 @@
 #import "MSLaunchView.h"
 #import "MSLaunchOperation.h"
 #import "MSPageControl.h"
-#import "MSAnimatedDotView.h"
 
 #define MSHidden_TIME 1.0
 #define MSScreenW   [UIScreen mainScreen].bounds.size.width
@@ -42,25 +41,23 @@ static NSString *const kAppVersion = @"appVersion";
 @implementation MSLaunchView
 
 #pragma mark - 创建对象-->>不带button 左滑动消失
-+(instancetype)launchWithImages:(NSArray <NSString *>*)images{
-    return [[MSLaunchView alloc] initWithVideoframe:CGRectZero guideFrame:CGRectZero images:images gImage:nil sbName:nil videoUrl:nil isScrollOut:YES];
++(instancetype) launchWithImages:(NSArray <NSString *>*)images isScrollOut:(BOOL)isScrollOut{
+    return [[MSLaunchView alloc] initWithVideoframe:CGRectZero guideFrame:CGRectZero images:images gImage:nil sbName:nil videoUrl:nil isScrollOut:isScrollOut];
 }
 
-#pragma mark - 创建对象-->>带button 左滑动不消失
-+(instancetype)launchWithImages:(NSArray <NSString *>*)images guideFrame:(CGRect)gframe  gImage:(UIImage *)gImage{
-    return [[MSLaunchView alloc] initWithVideoframe:CGRectZero guideFrame:gframe images:images gImage:gImage sbName:nil videoUrl:nil isScrollOut:NO];
+#pragma mark - 创建对象-->>带button
++(instancetype)launchWithImages:(NSArray <NSString *>*)images guideFrame:(CGRect)gframe gImage:(UIImage *)gImage isScrollOut:(BOOL)isScrollOut{
+    return [[MSLaunchView alloc] initWithVideoframe:CGRectZero guideFrame:gframe images:images gImage:gImage sbName:nil videoUrl:nil isScrollOut:isScrollOut];
 }
 
-
-
-#pragma mark - 用storyboard创建的项目时调用，不带button 左滑动消失
-+(instancetype)launchWithImages:(NSArray <NSString *>*)images sbName:(NSString *)sbName{
-    return [[MSLaunchView alloc] initWithVideoframe:CGRectZero guideFrame:CGRectZero images:images gImage:nil sbName:![MSLaunchView isBlankString:sbName]? sbName:@"Main" videoUrl:nil isScrollOut:YES];
+#pragma mark - 用storyboard创建的项目时调用，不带button左滑动不消失
++(instancetype)launchWithImages:(NSArray <NSString *>*)images sbName:(NSString *)sbName isScrollOut:(BOOL)isScrollOut{
+    return [[MSLaunchView alloc] initWithVideoframe:CGRectZero guideFrame:CGRectZero images:images gImage:nil sbName:![MSLaunchView isBlankString:sbName]? sbName:@"Main" videoUrl:nil isScrollOut:isScrollOut];
 }
 
 #pragma mark - 用storyboard创建的项目时调用，带button左滑动不消失
-+(instancetype)launchWithImages:(NSArray <NSString *>*)images sbName:(NSString *)sbName guideFrame:(CGRect)gframe gImage:(UIImage *)gImage{
-    return [[MSLaunchView alloc] initWithVideoframe:CGRectZero guideFrame:gframe images:images gImage:nil sbName:![MSLaunchView isBlankString:sbName]? sbName:@"Main" videoUrl:nil isScrollOut:NO];
++(instancetype)launchWithImages:(NSArray <NSString *>*)images sbName:(NSString *)sbName guideFrame:(CGRect)gframe gImage:(UIImage *)gImage isScrollOut:(BOOL)isScrollOut{
+    return [[MSLaunchView alloc] initWithVideoframe:CGRectZero guideFrame:gframe images:images gImage:nil sbName:![MSLaunchView isBlankString:sbName]? sbName:@"Main" videoUrl:nil isScrollOut:isScrollOut];
 }
 
 
@@ -92,8 +89,7 @@ static NSString *const kAppVersion = @"appVersion";
 - (instancetype)initWithVideoframe:(CGRect)frame guideFrame:(CGRect)gframe images:(NSArray <NSString *>*)images gImage:(UIImage *)gImage sbName:(NSString *)sbName videoUrl:(NSURL *)videoUrl isScrollOut:(BOOL)isScrollOut{
     self = [super init];
     if (self) {
-        
-        
+ 
         self.frame = CGRectMake(0, 0, MSScreenW, MSScreenH);
         self.backgroundColor = [UIColor whiteColor];
         if (images.count>0) {
@@ -111,8 +107,13 @@ static NSString *const kAppVersion = @"appVersion";
         self.isPalyEndOut = YES;
         self.videoGravity = AVLayerVideoGravityResizeAspectFill;
         
-        
-        if ([self isFirstLauch]) {
+        if ([MSLaunchView isFirstLaunch]) {
+            //保存当前的最新版本号
+            NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+            NSString *currentAppVersion = infoDic[@"CFBundleShortVersionString"];
+            [[NSUserDefaults standardUserDefaults] setObject:currentAppVersion forKey:kAppVersion];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
             UIWindow *window = [UIApplication sharedApplication].windows.lastObject;
             
             if (sbName != nil) {
@@ -147,12 +148,11 @@ static NSString *const kAppVersion = @"appVersion";
     _hidesForSinglePage = YES;
     _currentPageDotColor = [UIColor whiteColor];
     _pageDotColor = [UIColor lightGrayColor];
-    _dotViewClass = [MSAnimatedDotView class];
 }
 
 
 #pragma mark - 判断是不是首次登录或者版本更新
--(BOOL)isFirstLauch{
++ (BOOL) isFirstLaunch{
     //获取当前版本号
     NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
     NSString *currentAppVersion = infoDic[@"CFBundleShortVersionString"];
@@ -160,8 +160,6 @@ static NSString *const kAppVersion = @"appVersion";
     NSString *version = [[NSUserDefaults standardUserDefaults] objectForKey:kAppVersion];
     //版本升级或首次登录
     if ([MSLaunchView isBlankString:version] || ![version isEqualToString:currentAppVersion]) {
-        [[NSUserDefaults standardUserDefaults] setObject:currentAppVersion forKey:kAppVersion];
-        [[NSUserDefaults standardUserDefaults] synchronize];
         return YES;
     }else{
         return NO;
@@ -181,6 +179,7 @@ static NSString *const kAppVersion = @"appVersion";
     
     for (int i = 0; i < self.dataImages.count; i ++) {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * MSScreenW, 0, MSScreenW, MSScreenH)];
+        imageView.userInteractionEnabled = YES;
         if ([[MSLaunchOperation ms_contentTypeForImageData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:self.dataImages[i] ofType:nil]]] isEqualToString:@"gif"]) {
             NSData *localData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:self.dataImages[i] ofType:nil]];
             imageView = (UIImageView *)[[MSLaunchOperation alloc] initWithFrame:imageView.frame gifImageData:localData];
@@ -193,10 +192,8 @@ static NSString *const kAppVersion = @"appVersion";
         if (i == self.dataImages.count - 1) {
             //拿到最后一个图片，添加自定义体验按钮
             launchView = imageView;
-            
             //判断要不要添加button
             if (!self.isScrollOut) {
-                [imageView setUserInteractionEnabled:YES];
                 [imageView addSubview:self.guideButton];
             }
         }
@@ -231,18 +228,33 @@ static NSString *const kAppVersion = @"appVersion";
     [self.skipButton setTitle:skipTitle forState:UIControlStateNormal];
 }
 
--(void)setSkipBackgroundClolr:(UIColor *)skipBackgroundClolr{
-    [self.skipButton setBackgroundColor:skipBackgroundClolr];
+-(void)setSkipBackgroundColor:(UIColor *)skipBackgroundColor{
+    [self.skipButton setBackgroundColor:skipBackgroundColor];
 }
+
+-(void)setSkipBackgroundImage:(UIImage *)skipBackgroundImage{
+    [self.skipButton setBackgroundImage:skipBackgroundImage forState:UIControlStateNormal];
+}
+
+-(void)setSkipTitleColor:(UIColor *)skipTitleColor{
+    [self.skipButton setTitleColor:skipTitleColor forState:UIControlStateNormal];
+}
+
+-(void)setSkipTitleFont:(UIFont *)skipTitleFont{
+    self.skipButton.titleLabel.font = skipTitleFont;
+}
+
 
 -(void)setIsHiddenSkipBtn:(BOOL)isHiddenSkipBtn{
     self.skipButton.hidden = isHiddenSkipBtn;
 }
 
+
 -(void)skipBtnCustom:(UIButton *(^)(void))btn{
     [self.skipButton removeFromSuperview];
     [self addSubview:btn()];
 }
+
 
 
 #pragma mark - 立即体验按钮的简单设置
@@ -256,6 +268,10 @@ static NSString *const kAppVersion = @"appVersion";
 
 -(void)setGuideTitleColor:(UIColor *)guideTitleColor{
     [self.guideButton setTitleColor:guideTitleColor forState:UIControlStateNormal];
+}
+
+-(void)setGuideTitleFont:(UIFont *)guideTitleFont{
+    self.guideButton.titleLabel.font = guideTitleFont;
 }
 
 #pragma mark - 自定义进入按钮
@@ -273,14 +289,6 @@ static NSString *const kAppVersion = @"appVersion";
 }
 
 #pragma mark - UIPageControl简单设置
--(void)setDotViewClass:(Class)dotViewClass{
-    _dotViewClass = dotViewClass;
-    [self setupPageControl];
-    if ([self.pageControl isKindOfClass:[MSPageControl class]]) {
-        MSPageControl *pageControl = (MSPageControl *)_pageControl;
-        pageControl.dotViewClass = dotViewClass;
-    }
-}
 
 -(void)setCurrentPageDotColor:(UIColor *)currentPageDotColor{
     _currentPageDotColor = currentPageDotColor;
@@ -367,6 +375,13 @@ static NSString *const kAppVersion = @"appVersion";
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
+    if (self.delegate && [self.delegate respondsToSelector:@selector(launchViewLoadFinish:)]) {
+        [self.delegate launchViewLoadFinish:self];
+    }
+    
+    if (self.loadFinishBlock) {
+        self.loadFinishBlock(self);
+    }
 }
 
 - (void)removeGuidePageHUD {
@@ -474,18 +489,18 @@ static NSString *const kAppVersion = @"appVersion";
             _pageControl = pageControl;
         }
             break;
-        case kMSPageContolStyleCustomer:
-        {
-            MSPageControl *pageControl = [[MSPageControl alloc] init];
-            pageControl.numberOfPages = self.dataImages.count;
-            pageControl.dotColor = self.currentPageDotColor;
-            pageControl.userInteractionEnabled = NO;
-            pageControl.currentPage = 0;
-            pageControl.dotViewClass = self.dotViewClass;
-            [self addSubview:pageControl];
-            _pageControl = pageControl;
-        }
-            break;
+//        case kMSPageContolStyleCustomer:
+//        {
+//            MSPageControl *pageControl = [[MSPageControl alloc] init];
+//            pageControl.numberOfPages = self.dataImages.count;
+//            pageControl.dotColor = self.currentPageDotColor;
+//            pageControl.userInteractionEnabled = NO;
+//            pageControl.currentPage = 0;
+//            pageControl.dotViewClass = self.dotViewClass;
+//            [self addSubview:pageControl];
+//            _pageControl = pageControl;
+//        }
+//            break;
         default:
             break;
     }

@@ -45,6 +45,11 @@ static CGSize const kDefaultDotSize = {8, 8};
  */
 @property (strong, nonatomic) NSMutableArray *dots;
 
+/**
+ dot视图自定义属性
+ */
+@property (nonatomic) Class dotViewClass;
+
 @end
 @implementation MSPageControl
 #pragma mark - Lifecycle
