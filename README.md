@@ -4,7 +4,7 @@
 #### 声明:部分图片来源于网络,如有涉及版权会马上删除,敬请谅解;
 ### 效果图展示:
 #### APP静态图片引导页(上) | APP动态图片引导页(下)
-
+#### 注意:MSLaunchView与MSCycleScrollView共用同一个PageControl,因此会有PageControl冲突的问题，建议二者可选其一；
 <table>
 <tr>
 <th>手动进入体验</th>
@@ -41,23 +41,23 @@
 
 ###### 使用代码创建的项目,无进入立即按钮:
 ```objc
-MSLaunchView *launchView = [MSLaunchView launchWithImages:@[@"launch1",@"launch2",@"launch3"]];
+MSLaunchView *launchView = [MSLaunchView launchWithImages:imageNameArray isScrollOut:YES];
 ```
 
 ###### 使用StoryBoard创建的项目,无进入立即按钮:
 ```objc
-[MSLaunchView launchWithImages:@[@"launch1",@"launch2",@"launch3"] sbName:@"Main"];
+MSLaunchView *launchView = [MSLaunchView launchWithImages:imageNameArray sbName:@"" isScrollOut:NO];
 ```
 
 ###### 使用代码创建的项目,有进入立即按钮:
 ```objc
-[MSLaunchView launchWithImages:imageNameArray guideFrame:CGRectMake(MSScreenW*0.3, MSScreenH*0.8, MSScreenW*0.4, MSScreenH*0.08) gImage:[UIImage imageNamed:@""]]；
+MSLaunchView *launchView = [MSLaunchView launchWithImages:imageNameArray guideFrame:rt gImage:[UIImage imageNamed:@""] isScrollOut:NO]；
 ```
 
 
 ###### 使用StoryBoard创建的项目,有进入立即按钮:
 ```objc
-[MSLaunchView launchWithImages:imageNameArray sbName:@"Main" guideFrame:CGRectMake(MSScreenW*0.3, MSScreenH*0.8, MSScreenW*0.4, MSScreenH*0.08) gImage:[UIImage imageNamed:@""]]；
+MSLaunchView *launchView = [MSLaunchView launchWithImages:imageNameArray sbName:@"" guideFrame:rt gImage:[UIImage imageNamed:@""] isScrollOut:YES]；
 ```
 
 ##### 小视频（目前仅支持单个视频文件）:
