@@ -3,7 +3,7 @@
 ---
 #### 声明:部分图片来源于网络,如有涉及版权会马上删除,敬请谅解; 
 #### 注意:MSLaunchView与MSCycleScrollView共用同一个PageControl,因此会有PageControl冲突的问题，建议二者可选其一；
-###效果图展示：
+### 效果图展示：
 #### APP静态图片引导页(上) | APP动态图片引导页(下)
 <table>
 <tr>
