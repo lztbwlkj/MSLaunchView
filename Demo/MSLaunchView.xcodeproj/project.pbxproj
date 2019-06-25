@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5942846322C1B4E700DE63C6 /* MSLaunchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5942845C22C1B4E700DE63C6 /* MSLaunchView.m */; };
+		5942846422C1B4E700DE63C6 /* MSLaunchOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5942845E22C1B4E700DE63C6 /* MSLaunchOperation.m */; };
+		5942846522C1B4E700DE63C6 /* MSPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5942845F22C1B4E700DE63C6 /* MSPageControl.m */; };
+		5942846622C1B4E700DE63C6 /* MSAnimatedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5942846022C1B4E700DE63C6 /* MSAnimatedDotView.m */; };
 		883E35F621941B2E00A267E3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E35F521941B2E00A267E3 /* AppDelegate.m */; };
 		883E35F921941B2E00A267E3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E35F821941B2E00A267E3 /* ViewController.m */; };
 		883E35FC21941B2E00A267E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 883E35FA21941B2E00A267E3 /* Main.storyboard */; };
@@ -25,10 +29,6 @@
 		88532165219943290054D188 /* Untitled-1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8853215B219943290054D188 /* Untitled-1.gif */; };
 		88532166219943290054D188 /* Untitled-2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8853215C219943290054D188 /* Untitled-2.gif */; };
 		88532167219943290054D188 /* Untitled-3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8853215D219943290054D188 /* Untitled-3.gif */; };
-		8874E50021DF382300628121 /* MSPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8874E4FE21DF382300628121 /* MSPageControl.m */; };
-		8874E50121DF382300628121 /* MSAnimatedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8874E4FF21DF382300628121 /* MSAnimatedDotView.m */; };
-		DC71C75421BEC271009720FD /* MSLaunchView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC71C75021BEC271009720FD /* MSLaunchView.m */; };
-		DC71C75521BEC271009720FD /* MSLaunchOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DC71C75121BEC271009720FD /* MSLaunchOperation.m */; };
 		DCBBF55921949DA400B963C3 /* 测试.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DCBBF55821949DA400B963C3 /* 测试.mp4 */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +50,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5942845B22C1B4E700DE63C6 /* MSPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPageControl.h; sourceTree = "<group>"; };
+		5942845C22C1B4E700DE63C6 /* MSLaunchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSLaunchView.m; sourceTree = "<group>"; };
+		5942845D22C1B4E700DE63C6 /* MSAnimatedDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSAnimatedDotView.h; sourceTree = "<group>"; };
+		5942845E22C1B4E700DE63C6 /* MSLaunchOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSLaunchOperation.m; sourceTree = "<group>"; };
+		5942845F22C1B4E700DE63C6 /* MSPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPageControl.m; sourceTree = "<group>"; };
+		5942846022C1B4E700DE63C6 /* MSAnimatedDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSAnimatedDotView.m; sourceTree = "<group>"; };
+		5942846122C1B4E700DE63C6 /* MSLaunchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSLaunchView.h; sourceTree = "<group>"; };
+		5942846222C1B4E700DE63C6 /* MSLaunchOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSLaunchOperation.h; sourceTree = "<group>"; };
 		883E35F121941B2E00A267E3 /* MSLaunchView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MSLaunchView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		883E35F421941B2E00A267E3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		883E35F521941B2E00A267E3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -76,14 +84,6 @@
 		8853215B219943290054D188 /* Untitled-1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Untitled-1.gif"; sourceTree = "<group>"; };
 		8853215C219943290054D188 /* Untitled-2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Untitled-2.gif"; sourceTree = "<group>"; };
 		8853215D219943290054D188 /* Untitled-3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Untitled-3.gif"; sourceTree = "<group>"; };
-		8874E4FC21DF382300628121 /* MSPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPageControl.h; sourceTree = "<group>"; };
-		8874E4FD21DF382300628121 /* MSAnimatedDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSAnimatedDotView.h; sourceTree = "<group>"; };
-		8874E4FE21DF382300628121 /* MSPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPageControl.m; sourceTree = "<group>"; };
-		8874E4FF21DF382300628121 /* MSAnimatedDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSAnimatedDotView.m; sourceTree = "<group>"; };
-		DC71C75021BEC271009720FD /* MSLaunchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSLaunchView.m; sourceTree = "<group>"; };
-		DC71C75121BEC271009720FD /* MSLaunchOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSLaunchOperation.m; sourceTree = "<group>"; };
-		DC71C75221BEC271009720FD /* MSLaunchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSLaunchView.h; sourceTree = "<group>"; };
-		DC71C75321BEC271009720FD /* MSLaunchOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSLaunchOperation.h; sourceTree = "<group>"; };
 		DCBBF55821949DA400B963C3 /* 测试.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "测试.mp4"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,6 +112,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5942845A22C1B4E700DE63C6 /* MSLaunchView */ = {
+			isa = PBXGroup;
+			children = (
+				5942845B22C1B4E700DE63C6 /* MSPageControl.h */,
+				5942845C22C1B4E700DE63C6 /* MSLaunchView.m */,
+				5942845D22C1B4E700DE63C6 /* MSAnimatedDotView.h */,
+				5942845E22C1B4E700DE63C6 /* MSLaunchOperation.m */,
+				5942845F22C1B4E700DE63C6 /* MSPageControl.m */,
+				5942846022C1B4E700DE63C6 /* MSAnimatedDotView.m */,
+				5942846122C1B4E700DE63C6 /* MSLaunchView.h */,
+				5942846222C1B4E700DE63C6 /* MSLaunchOperation.h */,
+			);
+			name = MSLaunchView;
+			path = ../../MSLaunchView;
+			sourceTree = "<group>";
+		};
 		883E35E821941B2E00A267E3 = {
 			isa = PBXGroup;
 			children = (
@@ -135,7 +151,7 @@
 		883E35F321941B2E00A267E3 /* MSLaunchView */ = {
 			isa = PBXGroup;
 			children = (
-				DC71C74F21BEC271009720FD /* MSLaunchView */,
+				5942845A22C1B4E700DE63C6 /* MSLaunchView */,
 				88532153219943290054D188 /* DesignSketchGIF */,
 				DCBBF55821949DA400B963C3 /* 测试.mp4 */,
 				883E35F421941B2E00A267E3 /* AppDelegate.h */,
@@ -184,21 +200,6 @@
 				8853215D219943290054D188 /* Untitled-3.gif */,
 			);
 			path = DesignSketchGIF;
-			sourceTree = "<group>";
-		};
-		DC71C74F21BEC271009720FD /* MSLaunchView */ = {
-			isa = PBXGroup;
-			children = (
-				8874E4FC21DF382300628121 /* MSPageControl.h */,
-				8874E4FE21DF382300628121 /* MSPageControl.m */,
-				8874E4FD21DF382300628121 /* MSAnimatedDotView.h */,
-				8874E4FF21DF382300628121 /* MSAnimatedDotView.m */,
-				DC71C75221BEC271009720FD /* MSLaunchView.h */,
-				DC71C75021BEC271009720FD /* MSLaunchView.m */,
-				DC71C75321BEC271009720FD /* MSLaunchOperation.h */,
-				DC71C75121BEC271009720FD /* MSLaunchOperation.m */,
-			);
-			path = MSLaunchView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -343,12 +344,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				883E35F921941B2E00A267E3 /* ViewController.m in Sources */,
-				8874E50121DF382300628121 /* MSAnimatedDotView.m in Sources */,
+				5942846622C1B4E700DE63C6 /* MSAnimatedDotView.m in Sources */,
 				883E360421941B4000A267E3 /* main.m in Sources */,
 				883E35F621941B2E00A267E3 /* AppDelegate.m in Sources */,
-				DC71C75521BEC271009720FD /* MSLaunchOperation.m in Sources */,
-				8874E50021DF382300628121 /* MSPageControl.m in Sources */,
-				DC71C75421BEC271009720FD /* MSLaunchView.m in Sources */,
+				5942846422C1B4E700DE63C6 /* MSLaunchOperation.m in Sources */,
+				5942846522C1B4E700DE63C6 /* MSPageControl.m in Sources */,
+				5942846322C1B4E700DE63C6 /* MSLaunchView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
