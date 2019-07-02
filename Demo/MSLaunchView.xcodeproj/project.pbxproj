@@ -116,13 +116,13 @@
 			isa = PBXGroup;
 			children = (
 				5942845B22C1B4E700DE63C6 /* MSPageControl.h */,
-				5942845C22C1B4E700DE63C6 /* MSLaunchView.m */,
-				5942845D22C1B4E700DE63C6 /* MSAnimatedDotView.h */,
-				5942845E22C1B4E700DE63C6 /* MSLaunchOperation.m */,
 				5942845F22C1B4E700DE63C6 /* MSPageControl.m */,
+				5942845D22C1B4E700DE63C6 /* MSAnimatedDotView.h */,
 				5942846022C1B4E700DE63C6 /* MSAnimatedDotView.m */,
-				5942846122C1B4E700DE63C6 /* MSLaunchView.h */,
 				5942846222C1B4E700DE63C6 /* MSLaunchOperation.h */,
+				5942845E22C1B4E700DE63C6 /* MSLaunchOperation.m */,
+				5942846122C1B4E700DE63C6 /* MSLaunchView.h */,
+				5942845C22C1B4E700DE63C6 /* MSLaunchView.m */,
 			);
 			name = MSLaunchView;
 			path = ../../MSLaunchView;
