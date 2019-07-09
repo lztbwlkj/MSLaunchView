@@ -24,20 +24,7 @@
 </tr>    
 </table>
 
-#### 更新记录：
-2019.07.09 -- v0.0.9 \
-1、添加PageControl更多定义属性；\
-2、PageControl支持Pod自动管理；\
-3、新增最后一页是否隐藏PageControl属性(lastDotsIsHidden)；
- 2019.06.22 -- v0.0.8 \
- 1、添加更多“跳过”按钮属性；\
- 2、添加App是否是首次打开的宏定义；\
- 3、微调初始化方法，是否测滑消失你说了算；\
- 4、增加引导页隐藏后的回调方法； 
- 
- 2019.01.05 -- v0.0.7:提交0.0.7版本 \
- 1、添加PageControl更多的自定义属性;
-
+#### [更新记录:](https://github.com/lztbwlkj/MSLaunchView/blob/master/CHANGELOG.md),
 
 #### 使用方式（支持代码创建和StoryBoard创建项目）:
 
