@@ -1,0 +1,20 @@
+# Uncomment the next line to define a global platform for your project
+ platform :ios, '9.0'
+
+target 'MSLaunchView' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+  pod 'MSPageControl'
+  # Pods for MSLaunchView
+
+  target 'MSLaunchViewTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'MSLaunchViewUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end

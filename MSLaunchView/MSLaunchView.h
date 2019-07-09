@@ -9,18 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import <AVKit/AVKit.h>
+#import "MSPageControl.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 #define kisFirstLaunch [MSLaunchView isFirstLaunch]
 
 @class MSLaunchView;
-
-typedef enum {
-    kMSPageContolStyleClassic,        // 系统自带经典样式
-    kMSPageContolStyleAnimated,       // 动画效果pagecontrol
-    kMSPageContolStyleNone            // 不显示pagecontrol
-} kMSPageContolStyle;
 
 typedef void (^launchViewLoadFinish)(MSLaunchView *launchView);
 
@@ -90,19 +85,24 @@ typedef void (^launchViewLoadFinish)(MSLaunchView *launchView);
 #pragma mark - >>PageControl属性简单设置
 
 /**
- pagecontrol 样式，默认为动画样式
+ MSPageControl的样式 目前只支持两种样式
  */
-@property (nonatomic, assign) kMSPageContolStyle pageControlStyle;
+@property(nonatomic,assign) MSPageControlStyle pageControlStyle;
 
 /**
- 是否显示PageControl
+ MSPageControl的过渡动画 目前只支持两种样式 其他样式需要自定义（自定义样式暂未开放）
+ */
+@property(nonatomic,assign) MSPageControlAnimation pageControlAnimation;
+
+/**
+ 是否显示分页控件 默认为YES
  */
 @property (nonatomic, assign) BOOL showPageControl;
 
 /**
- 是否在只有一张图时隐藏pagecontrol，默认为YES
+ 分页控件距离轮播图的底部间距（在默认间距基础上）的偏移量
  */
-@property(nonatomic) BOOL hidesForSinglePage;
+@property (nonatomic, assign) CGFloat pageControlBottomOffset;
 
 /**
  相邻两个小圆点间的间隔大小 Default is 8.
@@ -110,34 +110,90 @@ typedef void (^launchViewLoadFinish)(MSLaunchView *launchView);
 @property (nonatomic,assign) CGFloat spacingBetweenDots;
 
 /**
- 分页控件距离轮播图的下边间距（在默认间距基础上）的偏移量 默认为15；
+ 分页控件距离轮播图的右边间距（在默认间距基础上）的偏移量
  */
-@property (nonatomic, assign) CGFloat pageControlBottomOffset;
+@property (nonatomic, assign) CGFloat pageControlRightOffset;
 
 /**
- 分页控件小圆标大小
+ * 分页控件小圆标大小
+ * 如果设置了 currentPageDotImage 和 pageDotImage 则pageControlDotSize将失效
  */
 @property (nonatomic, assign) CGSize pageControlDotSize;
 
 /**
- 当前分页控件小圆标颜色 ⚠️：如果调用了dotViewClass的属性，则该属性失效
+ 当前分页控件小圆标颜色
  */
 @property (nonatomic, strong) UIColor *currentPageDotColor;
 
 /**
- 其他分页控件小圆标颜色 ⚠️：如果调用了dotViewClass的属性，则该属性失效
+ 其他分页控件小圆标颜色
  */
 @property (nonatomic, strong) UIColor *pageDotColor;
 
 /**
- 当前分页控件小圆标图片 ⚠️：如果调用了dotViewClass的属性，则该属性失效
+ * 当前分页控件小圆标图片 设置图片后
+ * 设置图片后currentWidthMultiple和pageControlDotSize属性失效
  */
 @property (nonatomic, strong) UIImage *currentPageDotImage;
 
 /**
- 其他分页控件小圆标图片 ⚠️：如果调用了dotViewClass的属性，则该属性失效
+ * 其他分页控件小圆标图片
+ * 设置图片后currentWidthMultiple和pageControlDotSize属性失效
  */
 @property (nonatomic, strong) UIImage *pageDotImage;
+
+#pragma mark - 新增属性
+@property(nonatomic, assign) BOOL dotsIsSquare;
+
+
+/**
+ 最后一页是否隐藏pageControl 默认为NO 不隐藏
+ */
+@property(nonatomic, assign) BOOL lastDotsIsHidden;
+
+/**
+ 当前选中点宽度与未选中点的宽度的倍数 默认是1
+ * 计算方法 pageDotSize.width = pageDotSize.width * currentWidthMultiple；
+ * 设置currentPageDotImage或者pageDotImage图片后currentWidthMultiple失效
+ */
+@property(nonatomic, assign) CGFloat currentWidthMultiple;
+
+/**
+ 未选中点的layerColor
+ */
+@property(nonatomic, strong) UIColor *dotBorderColor;
+
+/**
+ 选中点的layerColor
+ */
+@property(nonatomic, strong) UIColor *currentDotBorderColor;
+
+/**
+ 未选中点的layer宽度
+ */
+@property(nonatomic, assign) CGFloat dotBorderWidth;
+
+/**
+ 选中点的layer宽度
+ */
+@property(nonatomic, assign) CGFloat currentDotBorderWidth;
+
+/**
+ 轮播文字label对齐方式
+ */
+@property (nonatomic, assign) NSTextAlignment titleLabelTextAlignment;
+
+
+/**
+ pageControlAnimation为MSPageControlStyleNumber时字体设置
+ */
+@property(nonatomic,strong) UIFont *textFont;
+
+/**
+ pageControlAnimation为MSPageControlStyleNumber时文本颜色设置
+ */
+@property(nonatomic,strong) UIColor *textColor;
+
 
 /**
  * 自定义立即体验按钮()

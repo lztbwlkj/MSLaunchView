@@ -3,14 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16D9E2CBAA3E5BD32EEF0982 /* Pods_MSLaunchViewUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B159C6EBD1B0143ED82F04A /* Pods_MSLaunchViewUITests.framework */; };
 		5942846322C1B4E700DE63C6 /* MSLaunchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5942845C22C1B4E700DE63C6 /* MSLaunchView.m */; };
 		5942846422C1B4E700DE63C6 /* MSLaunchOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5942845E22C1B4E700DE63C6 /* MSLaunchOperation.m */; };
-		5942846522C1B4E700DE63C6 /* MSPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5942845F22C1B4E700DE63C6 /* MSPageControl.m */; };
-		5942846622C1B4E700DE63C6 /* MSAnimatedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5942846022C1B4E700DE63C6 /* MSAnimatedDotView.m */; };
 		883E35F621941B2E00A267E3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E35F521941B2E00A267E3 /* AppDelegate.m */; };
 		883E35F921941B2E00A267E3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 883E35F821941B2E00A267E3 /* ViewController.m */; };
 		883E35FC21941B2E00A267E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 883E35FA21941B2E00A267E3 /* Main.storyboard */; };
@@ -29,7 +28,9 @@
 		88532165219943290054D188 /* Untitled-1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8853215B219943290054D188 /* Untitled-1.gif */; };
 		88532166219943290054D188 /* Untitled-2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8853215C219943290054D188 /* Untitled-2.gif */; };
 		88532167219943290054D188 /* Untitled-3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8853215D219943290054D188 /* Untitled-3.gif */; };
+		A25B49E97ABF0A3387EA646A /* Pods_MSLaunchViewTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E55961E2F504E27178FAB89D /* Pods_MSLaunchViewTests.framework */; };
 		DCBBF55921949DA400B963C3 /* 测试.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = DCBBF55821949DA400B963C3 /* 测试.mp4 */; };
+		FC52581B8E4CCEF1652BCAE0 /* Pods_MSLaunchView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473C1A8BDDBD8600D40C2193 /* Pods_MSLaunchView.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,12 +51,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5942845B22C1B4E700DE63C6 /* MSPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSPageControl.h; sourceTree = "<group>"; };
+		02BE1D01AE3792B59680E879 /* Pods-MSLaunchViewTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MSLaunchViewTests.debug.xcconfig"; path = "Target Support Files/Pods-MSLaunchViewTests/Pods-MSLaunchViewTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2308805C496669D48422DFFA /* Pods-MSLaunchView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MSLaunchView.debug.xcconfig"; path = "Target Support Files/Pods-MSLaunchView/Pods-MSLaunchView.debug.xcconfig"; sourceTree = "<group>"; };
+		473C1A8BDDBD8600D40C2193 /* Pods_MSLaunchView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MSLaunchView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5942845C22C1B4E700DE63C6 /* MSLaunchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSLaunchView.m; sourceTree = "<group>"; };
-		5942845D22C1B4E700DE63C6 /* MSAnimatedDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSAnimatedDotView.h; sourceTree = "<group>"; };
 		5942845E22C1B4E700DE63C6 /* MSLaunchOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSLaunchOperation.m; sourceTree = "<group>"; };
-		5942845F22C1B4E700DE63C6 /* MSPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSPageControl.m; sourceTree = "<group>"; };
-		5942846022C1B4E700DE63C6 /* MSAnimatedDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSAnimatedDotView.m; sourceTree = "<group>"; };
 		5942846122C1B4E700DE63C6 /* MSLaunchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSLaunchView.h; sourceTree = "<group>"; };
 		5942846222C1B4E700DE63C6 /* MSLaunchOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSLaunchOperation.h; sourceTree = "<group>"; };
 		883E35F121941B2E00A267E3 /* MSLaunchView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MSLaunchView.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,7 +84,13 @@
 		8853215B219943290054D188 /* Untitled-1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Untitled-1.gif"; sourceTree = "<group>"; };
 		8853215C219943290054D188 /* Untitled-2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Untitled-2.gif"; sourceTree = "<group>"; };
 		8853215D219943290054D188 /* Untitled-3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Untitled-3.gif"; sourceTree = "<group>"; };
+		8A55DFFF47212AB2AC8E28F7 /* Pods-MSLaunchViewTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MSLaunchViewTests.release.xcconfig"; path = "Target Support Files/Pods-MSLaunchViewTests/Pods-MSLaunchViewTests.release.xcconfig"; sourceTree = "<group>"; };
+		8B159C6EBD1B0143ED82F04A /* Pods_MSLaunchViewUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MSLaunchViewUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCBBF55821949DA400B963C3 /* 测试.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "测试.mp4"; sourceTree = "<group>"; };
+		E55961E2F504E27178FAB89D /* Pods_MSLaunchViewTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MSLaunchViewTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F789ED998667A35F6F77D54D /* Pods-MSLaunchViewUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MSLaunchViewUITests.release.xcconfig"; path = "Target Support Files/Pods-MSLaunchViewUITests/Pods-MSLaunchViewUITests.release.xcconfig"; sourceTree = "<group>"; };
+		FC093430A4F5396F1EB5165F /* Pods-MSLaunchViewUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MSLaunchViewUITests.debug.xcconfig"; path = "Target Support Files/Pods-MSLaunchViewUITests/Pods-MSLaunchViewUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		FF17D5234A49504AB4B88AC9 /* Pods-MSLaunchView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MSLaunchView.release.xcconfig"; path = "Target Support Files/Pods-MSLaunchView/Pods-MSLaunchView.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC52581B8E4CCEF1652BCAE0 /* Pods_MSLaunchView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A25B49E97ABF0A3387EA646A /* Pods_MSLaunchViewTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,19 +114,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16D9E2CBAA3E5BD32EEF0982 /* Pods_MSLaunchViewUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1AD73089BC1F4A8B9FBDBAFB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2308805C496669D48422DFFA /* Pods-MSLaunchView.debug.xcconfig */,
+				FF17D5234A49504AB4B88AC9 /* Pods-MSLaunchView.release.xcconfig */,
+				02BE1D01AE3792B59680E879 /* Pods-MSLaunchViewTests.debug.xcconfig */,
+				8A55DFFF47212AB2AC8E28F7 /* Pods-MSLaunchViewTests.release.xcconfig */,
+				FC093430A4F5396F1EB5165F /* Pods-MSLaunchViewUITests.debug.xcconfig */,
+				F789ED998667A35F6F77D54D /* Pods-MSLaunchViewUITests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		5942845A22C1B4E700DE63C6 /* MSLaunchView */ = {
 			isa = PBXGroup;
 			children = (
-				5942845B22C1B4E700DE63C6 /* MSPageControl.h */,
-				5942845F22C1B4E700DE63C6 /* MSPageControl.m */,
-				5942845D22C1B4E700DE63C6 /* MSAnimatedDotView.h */,
-				5942846022C1B4E700DE63C6 /* MSAnimatedDotView.m */,
 				5942846222C1B4E700DE63C6 /* MSLaunchOperation.h */,
 				5942845E22C1B4E700DE63C6 /* MSLaunchOperation.m */,
 				5942846122C1B4E700DE63C6 /* MSLaunchView.h */,
@@ -135,6 +153,8 @@
 				883E360C21941B4000A267E3 /* MSLaunchViewTests */,
 				883E361721941B4000A267E3 /* MSLaunchViewUITests */,
 				883E35F221941B2E00A267E3 /* Products */,
+				1AD73089BC1F4A8B9FBDBAFB /* Pods */,
+				C980C5DE19173B56443E5123 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -202,6 +222,16 @@
 			path = DesignSketchGIF;
 			sourceTree = "<group>";
 		};
+		C980C5DE19173B56443E5123 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				473C1A8BDDBD8600D40C2193 /* Pods_MSLaunchView.framework */,
+				E55961E2F504E27178FAB89D /* Pods_MSLaunchViewTests.framework */,
+				8B159C6EBD1B0143ED82F04A /* Pods_MSLaunchViewUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -209,9 +239,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 883E361D21941B4000A267E3 /* Build configuration list for PBXNativeTarget "MSLaunchView" */;
 			buildPhases = (
+				B4A3F2152483DC62828BE9A5 /* [CP] Check Pods Manifest.lock */,
 				883E35ED21941B2E00A267E3 /* Sources */,
 				883E35EE21941B2E00A267E3 /* Frameworks */,
 				883E35EF21941B2E00A267E3 /* Resources */,
+				A28677B70595086A1F91CF90 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -226,6 +258,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 883E362021941B4000A267E3 /* Build configuration list for PBXNativeTarget "MSLaunchViewTests" */;
 			buildPhases = (
+				E2991A5C7303B135ACC6760B /* [CP] Check Pods Manifest.lock */,
 				883E360521941B4000A267E3 /* Sources */,
 				883E360621941B4000A267E3 /* Frameworks */,
 				883E360721941B4000A267E3 /* Resources */,
@@ -244,6 +277,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 883E362321941B4000A267E3 /* Build configuration list for PBXNativeTarget "MSLaunchViewUITests" */;
 			buildPhases = (
+				98FB8813DBA02025785C7587 /* [CP] Check Pods Manifest.lock */,
 				883E361021941B4000A267E3 /* Sources */,
 				883E361121941B4000A267E3 /* Frameworks */,
 				883E361221941B4000A267E3 /* Resources */,
@@ -338,17 +372,101 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		98FB8813DBA02025785C7587 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MSLaunchViewUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A28677B70595086A1F91CF90 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MSLaunchView/Pods-MSLaunchView-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MSLaunchView/Pods-MSLaunchView-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MSLaunchView/Pods-MSLaunchView-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B4A3F2152483DC62828BE9A5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MSLaunchView-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E2991A5C7303B135ACC6760B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MSLaunchViewTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		883E35ED21941B2E00A267E3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				883E35F921941B2E00A267E3 /* ViewController.m in Sources */,
-				5942846622C1B4E700DE63C6 /* MSAnimatedDotView.m in Sources */,
 				883E360421941B4000A267E3 /* main.m in Sources */,
 				883E35F621941B2E00A267E3 /* AppDelegate.m in Sources */,
 				5942846422C1B4E700DE63C6 /* MSLaunchOperation.m in Sources */,
-				5942846522C1B4E700DE63C6 /* MSPageControl.m in Sources */,
 				5942846322C1B4E700DE63C6 /* MSLaunchView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,6 +636,7 @@
 		};
 		883E361E21941B4000A267E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2308805C496669D48422DFFA /* Pods-MSLaunchView.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -530,12 +649,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.turbur.MSLaunchView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		883E361F21941B4000A267E3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF17D5234A49504AB4B88AC9 /* Pods-MSLaunchView.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -548,12 +668,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.turbur.MSLaunchView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 		883E362121941B4000A267E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 02BE1D01AE3792B59680E879 /* Pods-MSLaunchViewTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -573,6 +694,7 @@
 		};
 		883E362221941B4000A267E3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8A55DFFF47212AB2AC8E28F7 /* Pods-MSLaunchViewTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -592,6 +714,7 @@
 		};
 		883E362421941B4000A267E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC093430A4F5396F1EB5165F /* Pods-MSLaunchViewUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NAWCVDY3ZB;
@@ -610,6 +733,7 @@
 		};
 		883E362521941B4000A267E3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F789ED998667A35F6F77D54D /* Pods-MSLaunchViewUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NAWCVDY3ZB;

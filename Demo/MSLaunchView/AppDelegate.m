@@ -40,18 +40,15 @@
 #pragma mark ---->>不带立即按钮 代码创建项目
 //        MSLaunchView *launchView = [MSLaunchView launchWithImages:imageNameArray isScrollOut:YES];
 #pragma mark ---->>带立即按钮 代码创建项目
-//        MSLaunchView *launchView = [MSLaunchView launchWithImages:imageNameArray guideFrame:rt gImage:[UIImage imageNamed:@""] isScrollOut:NO];
+        MSLaunchView *launchView = [MSLaunchView launchWithImages:imageNameArray guideFrame:rt gImage:[UIImage imageNamed:@""] isScrollOut:NO];
 
         
 #pragma mark ---->>关于Video 没有立即进入按钮
-        NSString *path  = [[NSBundle mainBundle]  pathForResource:@"测试" ofType:@"mp4"];
-        NSURL *url = [NSURL fileURLWithPath:path];
-        MSLaunchView *launchView = [MSLaunchView launchWithVideo:CGRectMake(0, 0, MSScreenW, MSScreenH) videoURL:url];
-        launchView.videoGravity = AVLayerVideoGravityResize;
-        launchView.isPalyEndOut = YES;//
-
-        launchView.pageDotColor = [UIColor lightGrayColor];
-        launchView.currentPageDotColor = [UIColor redColor];
+//        NSString *path  = [[NSBundle mainBundle]  pathForResource:@"测试" ofType:@"mp4"];
+//        NSURL *url = [NSURL fileURLWithPath:path];
+//        MSLaunchView *launchView = [MSLaunchView launchWithVideo:CGRectMake(0, 0, MSScreenW, MSScreenH) videoURL:url];
+//        launchView.videoGravity = AVLayerVideoGravityResize;
+//        launchView.isPalyEndOut = YES;//
         
         launchView.guideTitle = @"进入当前界面";
         launchView.guideTitleColor = [UIColor blackColor];
@@ -64,11 +61,33 @@
         launchView.skipBackgroundColor = [UIColor redColor];
         launchView.skipBackgroundImage = [UIImage imageNamed:@""];
         
-        launchView.showPageControl = NO;
+        
+#pragma mark ---->>PageControl自定义属性
+
+//        launchView.showPageControl = NO;
         //pageControl的间距大小
-        launchView.spacingBetweenDots = 30;
-        launchView.pageControlBottomOffset += 20;
+//        launchView.pageControlStyle = MSPageControlStyleNumber;
+     
+//        launchView.pageControlBottomOffset += 25;
+        launchView.pageDotColor = [UIColor redColor];
+        launchView.currentPageDotColor = [UIColor yellowColor];
+        launchView.textFont = [UIFont systemFontOfSize:9 weight:UIFontWeightBold];
+        launchView.textColor = [UIColor blackColor];
+        launchView.dotsIsSquare = NO;
+        launchView.spacingBetweenDots = 15;
+      
+        launchView.dotBorderWidth = 2;
+        launchView.dotBorderColor = [UIColor blueColor];
+        launchView.currentDotBorderWidth = 2;
+        launchView.currentDotBorderColor = [UIColor redColor];
         launchView.delegate = self;
+        //设置了pageDotImage和currentPageDotImage图片 pageControlDotSize和currentWidthMultiple将失效
+        launchView.pageControlDotSize = CGSizeMake(20, 20);
+        launchView.currentWidthMultiple =  3;
+        
+        launchView.lastDotsIsHidden = YES;//最后一个页面时是否隐藏PageControl 默认为NO
+        launchView.pageDotImage = [UIImage imageNamed:@"Ktv_ic_share_qq"];
+        launchView.currentPageDotImage = [UIImage imageNamed:@"Ktv_ic_share_weixin"];
         launchView.loadFinishBlock = ^(MSLaunchView * _Nonnull launchView) {
             NSLog(@"广告加载完成了");
         };

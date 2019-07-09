@@ -29,11 +29,14 @@
 }
 @property (nonatomic, strong) UIButton *skipButton;//跳过按钮
 @property (nonatomic, strong) UIButton *guideButton;//立即进入按钮
-@property (nonatomic, weak) UIControl *pageControl;
+@property (nonatomic, strong) MSPageControl *pageControl;
 @property (nonatomic, strong) AVPlayerViewController  *playerController;//视频播放
 @property (nonatomic, copy) NSMutableArray<NSString *> *dataImages; //图片数据
 @property (nonatomic, strong) NSURL *videoUrl;
 @property (nonatomic, assign) BOOL isScrollOut;//是否左滑推出
+
+@property (nonatomic, strong) UIScrollView *scrollView;
+
 @end
 
 static NSString *const kAppVersion = @"appVersion";
@@ -129,6 +132,7 @@ static NSString *const kAppVersion = @"appVersion";
                 [self addVideo];
             }else{
                 [self addImages];
+                [self setupPageControl];
             }
         }else{
             [self removeGuidePageHUD];
@@ -143,11 +147,25 @@ static NSString *const kAppVersion = @"appVersion";
     
     _showPageControl = YES;
     _pageControlDotSize = kCycleScrollViewInitialPageControlDotSize;
-    _pageControlBottomOffset = 15;
-    _pageControlStyle = kMSPageContolStyleClassic;
-    _hidesForSinglePage = YES;
+    _pageControlBottomOffset = 0;
+    _pageControlRightOffset = 0;
     _currentPageDotColor = [UIColor whiteColor];
     _pageDotColor = [UIColor lightGrayColor];
+    _spacingBetweenDots = 8;
+    _currentWidthMultiple = 1;//当前选中点宽度与未选中点的宽度的倍数，默认为1倍
+    _dotsIsSquare = NO;//默认是圆点
+    _lastDotsIsHidden = NO;
+    _currentDotBorderWidth = 0;
+    _currentDotBorderColor = [UIColor clearColor];
+    
+    _dotBorderColor = [UIColor whiteColor];
+    _dotBorderWidth = 0;
+    
+    _pageControlStyle = MSPageControlStyleSystem;
+    _pageControlAnimation = MSPageControlAnimationNone;
+    
+    self.textFont = [UIFont systemFontOfSize:9];
+    self.textColor = [UIColor blackColor];
 }
 
 
@@ -166,16 +184,13 @@ static NSString *const kAppVersion = @"appVersion";
     }
 }
 
+
+
 #pragma mark - 创建滚动视图、添加引导页图片
 -(void)addImages{
     
-    UIScrollView *launchScrollView = [[UIScrollView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    launchScrollView.showsHorizontalScrollIndicator = NO;
-    launchScrollView.bounces = NO;
-    launchScrollView.pagingEnabled = YES;
-    launchScrollView.delegate = self;
-    launchScrollView.contentSize = CGSizeMake(MSScreenW * self.dataImages.count, MSScreenH);
-    [self addSubview:launchScrollView];
+    self.scrollView.contentSize = CGSizeMake(MSScreenW * self.dataImages.count, MSScreenH);
+    [self addSubview:self.scrollView];
     
     for (int i = 0; i < self.dataImages.count; i ++) {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * MSScreenW, 0, MSScreenW, MSScreenH)];
@@ -183,10 +198,10 @@ static NSString *const kAppVersion = @"appVersion";
         if ([[MSLaunchOperation ms_contentTypeForImageData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:self.dataImages[i] ofType:nil]]] isEqualToString:@"gif"]) {
             NSData *localData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:self.dataImages[i] ofType:nil]];
             imageView = (UIImageView *)[[MSLaunchOperation alloc] initWithFrame:imageView.frame gifImageData:localData];
-            [launchScrollView addSubview:imageView];
+            [_scrollView addSubview:imageView];
         } else {
             imageView.image = [UIImage imageNamed:self.dataImages[i]];
-            [launchScrollView addSubview:imageView];
+            [_scrollView addSubview:imageView];
         }
         
         if (i == self.dataImages.count - 1) {
@@ -200,8 +215,6 @@ static NSString *const kAppVersion = @"appVersion";
     }
     
     [self addSubview:self.skipButton];
-    
-    [self setupPageControl];
 }
 
 
@@ -289,44 +302,133 @@ static NSString *const kAppVersion = @"appVersion";
 }
 
 #pragma mark - UIPageControl简单设置
-
--(void)setCurrentPageDotColor:(UIColor *)currentPageDotColor{
-    _currentPageDotColor = currentPageDotColor;
-    if ([self.pageControl isKindOfClass:[MSPageControl class]]) {
-        MSPageControl *pageControl = (MSPageControl *)_pageControl;
-        pageControl.dotColor = currentPageDotColor;
-    } else {
-        UIPageControl *pageControl = (UIPageControl *)_pageControl;
-        pageControl.currentPageIndicatorTintColor = currentPageDotColor;
-    }
+-(void)setLastDotsIsHidden:(BOOL)lastDotsIsHidden{
+    _lastDotsIsHidden = lastDotsIsHidden;
 }
-
--(void)setSpacingBetweenDots:(CGFloat)spacingBetweenDots{
-    _spacingBetweenDots = spacingBetweenDots;
-    [self setupPageControl];
-    if ([self.pageControl isKindOfClass:[MSPageControl class]]) {
-        MSPageControl *pageControl = (MSPageControl *)_pageControl;
-        pageControl.spacingBetweenDots = spacingBetweenDots;
-    }
-}
-
-- (void)setShowPageControl:(BOOL)showPageControl
-{
-    _showPageControl = showPageControl;
-    
-    _pageControl.hidden = !showPageControl;
-}
-
 
 - (void)setPageControlDotSize:(CGSize)pageControlDotSize
 {
     _pageControlDotSize = pageControlDotSize;
-    [self setupPageControl];
-    if ([self.pageControl isKindOfClass:[MSPageControl class]]) {
-        MSPageControl *pageContol = (MSPageControl *)_pageControl;
-        pageContol.pageDotSize = pageControlDotSize;
-    }
+    MSPageControl *pageControl = (MSPageControl *)_pageControl;
+    pageControl.pageDotSize = pageControlDotSize;
 }
+
+- (void)setShowPageControl:(BOOL)showPageControl{
+    _showPageControl = showPageControl;
+    _pageControl.hidden = !showPageControl;
+}
+
+-(void)setSpacingBetweenDots:(CGFloat)spacingBetweenDots{
+    if (_spacingBetweenDots == spacingBetweenDots) return;
+    
+    _spacingBetweenDots = spacingBetweenDots;
+    MSPageControl *pageControl = (MSPageControl *)_pageControl;
+    pageControl.spacingBetweenDots = spacingBetweenDots;
+}
+
+- (void)setDotBorderWidth:(CGFloat)dotBorderWidth{
+    if (_dotBorderWidth == dotBorderWidth) return;
+    
+    _dotBorderWidth = dotBorderWidth;
+    MSPageControl *pageControl = (MSPageControl *)_pageControl;
+    pageControl.dotBorderWidth = dotBorderWidth;
+}
+
+-(void)setCurrentDotBorderWidth:(CGFloat)currentDotBorderWidth{
+    if (_currentDotBorderWidth == currentDotBorderWidth) return;
+    _currentDotBorderWidth = currentDotBorderWidth;
+    MSPageControl *pageControl = (MSPageControl *)_pageControl;
+    pageControl.currentDotBorderWidth = currentDotBorderWidth;
+    
+}
+
+-(void)setDotBorderColor:(UIColor *)dotBorderColor{
+    if (_dotBorderColor == dotBorderColor) return;
+    _dotBorderColor = dotBorderColor;
+    MSPageControl *pageControl = (MSPageControl *)_pageControl;
+    pageControl.dotBorderColor = dotBorderColor;
+}
+-(void)setPageControlAnimation:(MSPageControlAnimation)pageControlAnimation{
+    if (_pageControlAnimation == pageControlAnimation) return;
+    _pageControlAnimation = pageControlAnimation;
+    MSPageControl *pageControl = (MSPageControl *)_pageControl;
+    pageControl.pageControlAnimation = pageControlAnimation;
+}
+
+-(void)setCurrentDotBorderColor:(UIColor *)currentDotBorderColor{
+    if (_currentDotBorderColor == currentDotBorderColor) return;
+    
+    _currentDotBorderColor = currentDotBorderColor;
+    MSPageControl *pageControl = (MSPageControl *)_pageControl;
+    pageControl.currentDotBorderColor = currentDotBorderColor;
+}
+
+-(void)setCurrentWidthMultiple:(CGFloat)currentWidthMultiple{
+    if (_currentWidthMultiple == currentWidthMultiple) return;
+    
+    _currentWidthMultiple = currentWidthMultiple;
+    MSPageControl *pageControl = (MSPageControl *)_pageControl;
+    pageControl.currentWidthMultiple = currentWidthMultiple;
+}
+
+-(void)setDotsIsSquare:(BOOL)dotsIsSquare{
+    if (_dotsIsSquare == dotsIsSquare) return;
+    _dotsIsSquare = dotsIsSquare;
+    MSPageControl *pageControl = (MSPageControl *)_pageControl;
+    pageControl.dotsIsSquare = dotsIsSquare;
+}
+
+-(void)setPageControlStyle:(MSPageControlStyle)pageControlStyle{
+    if (_pageControlStyle == pageControlStyle) return;
+    _pageControlStyle = pageControlStyle;
+    MSPageControl *pageControl = (MSPageControl *)_pageControl;
+    pageControl.pageControlStyle = pageControlStyle;
+}
+
+
+- (void)setCurrentPageDotColor:(UIColor *)currentPageDotColor
+{
+    _currentPageDotColor = currentPageDotColor;
+
+    MSPageControl *pageControl = (MSPageControl *)_pageControl;
+    pageControl.currentDotColor = currentPageDotColor;
+}
+
+- (void)setPageDotColor:(UIColor *)pageDotColor
+{
+    if (_pageDotColor == pageDotColor) return;
+    _pageDotColor = pageDotColor;
+    MSPageControl *pageControl = (MSPageControl *)_pageControl;
+    pageControl.dotColor = pageDotColor;
+}
+-(void)setTextFont:(UIFont *)textFont{
+    if (_textFont == textFont) return;
+    _textFont = textFont;
+    MSPageControl *pageControl = (MSPageControl *)_pageControl;
+    pageControl.textFont = textFont;
+}
+
+-(void)setTextColor:(UIColor *)textColor{
+    if (_textColor == textColor) return;
+    _textColor = textColor;
+    MSPageControl *pageControl = (MSPageControl *)_pageControl;
+    pageControl.textColor = textColor;
+}
+
+- (void)setCurrentPageDotImage:(UIImage *)currentPageDotImage
+{
+    _currentPageDotImage = currentPageDotImage;
+    
+    [self setCustomPageControlDotImage:currentPageDotImage isCurrentPageDot:YES];
+}
+
+- (void)setPageDotImage:(UIImage *)pageDotImage
+{
+    _pageDotImage = pageDotImage;
+    
+    [self setCustomPageControlDotImage:pageDotImage isCurrentPageDot:NO];
+}
+
 
 - (void)setCustomPageControlDotImage:(UIImage *)image isCurrentPageDot:(BOOL)isCurrentPageDot
 {
@@ -341,13 +443,6 @@ static NSString *const kAppVersion = @"appVersion";
         }
     }
 }
-
--(void)setPageControlStyle:(kMSPageContolStyle)pageControlStyle{
-    _pageControlStyle = pageControlStyle;
-    
-    [self setupPageControl];
-}
-
 
 #pragma mark - UIPageControl简单设置
 
@@ -400,9 +495,13 @@ static NSString *const kAppVersion = @"appVersion";
     oldlastContentOffset = scrollView.contentOffset.x;
 }
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    [self scrollViewDidEndScrollingAnimation:self.scrollView];
+}
+
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     newlastContentOffset = scrollView.contentOffset.x;
-    int cuttentIndex = (int)(oldlastContentOffset/MSScreenW);
+    int cuttentIndex = [self currentIndex];
     
     if (cuttentIndex == self.dataImages.count - 1) {
         if ([self isScrolltoLeft:scrollView]) {
@@ -414,18 +513,33 @@ static NSString *const kAppVersion = @"appVersion";
     }
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (!self.dataImages.count) return;
     int cuttentIndex = (int)(scrollView.contentOffset.x/MSScreenW);
-   
-    if ([self.pageControl isKindOfClass:[MSPageControl class]]) {
-        MSPageControl *pageControl = (MSPageControl *)_pageControl;
-        pageControl.currentPage = cuttentIndex;
-    } else {
-        UIPageControl *pageControl = (UIPageControl *)_pageControl;
-        pageControl.currentPage = cuttentIndex;
+    if (self.lastDotsIsHidden && cuttentIndex == self.dataImages.count - 1) {
+        return;
     }
+    MSPageControl *pageControl = (MSPageControl *)_pageControl;
+    pageControl.currentPage = [self currentIndex];
 }
 
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
+{
+    int cuttentIndex = (int)(scrollView.contentOffset.x/MSScreenW);
+    
+    MSPageControl *pageControl = (MSPageControl *)_pageControl;
+    if (self.lastDotsIsHidden && cuttentIndex == self.dataImages.count - 1) {
+        pageControl.hidden = YES;
+        return;
+    }
+    pageControl.hidden = NO;
+}
+
+- (int)currentIndex{
+    int index = 0;
+    index = (_scrollView.contentOffset.x) / MSScreenW;
+    return MAX(0, index);
+}
 
 
 #pragma mark - 判断滚动方向
@@ -462,48 +576,9 @@ static NSString *const kAppVersion = @"appVersion";
     
     if (self.dataImages.count == 0) return;
 //
-    if ((self.dataImages.count == 1) && self.hidesForSinglePage) return;
-    
-    switch (self.pageControlStyle) {
-        case kMSPageContolStyleAnimated:
-        {
-            MSPageControl *pageControl = [[MSPageControl alloc] init];
-            pageControl.numberOfPages = self.dataImages.count;
-            pageControl.dotColor = self.currentPageDotColor;
-            pageControl.userInteractionEnabled = NO;
-            pageControl.currentPage = 0;
-            [self addSubview:pageControl];
-            _pageControl = pageControl;
-        }
-            break;
-            
-        case kMSPageContolStyleClassic:
-        {
-            UIPageControl *pageControl = [[UIPageControl alloc] init];
-            pageControl.numberOfPages = self.dataImages.count;
-            pageControl.currentPageIndicatorTintColor = self.currentPageDotColor;
-            pageControl.pageIndicatorTintColor = self.pageDotColor;
-            pageControl.userInteractionEnabled = NO;
-            pageControl.currentPage = 0;
-            [self addSubview:pageControl];
-            _pageControl = pageControl;
-        }
-            break;
-//        case kMSPageContolStyleCustomer:
-//        {
-//            MSPageControl *pageControl = [[MSPageControl alloc] init];
-//            pageControl.numberOfPages = self.dataImages.count;
-//            pageControl.dotColor = self.currentPageDotColor;
-//            pageControl.userInteractionEnabled = NO;
-//            pageControl.currentPage = 0;
-//            pageControl.dotViewClass = self.dotViewClass;
-//            [self addSubview:pageControl];
-//            _pageControl = pageControl;
-//        }
-//            break;
-        default:
-            break;
-    }
+    if (self.dataImages.count == 1) return;
+
+    [self addSubview:self.pageControl];
     
     // 重设pagecontroldot图片
     if (self.currentPageDotImage) {
@@ -533,7 +608,7 @@ static NSString *const kAppVersion = @"appVersion";
 //    if (self.pageControlAliment == kMSPageContolAlimentRight) {
 //        x = self.mainView.sd_width - size.width - 10;
 //    }
-    CGFloat y = self.frame.size.height - size.height - 10;
+    CGFloat y = self.frame.size.height - size.height - 20;
     
     if ([self.pageControl isKindOfClass:[MSPageControl class]]) {
         MSPageControl *pageControl = (MSPageControl *)_pageControl;
@@ -549,7 +624,15 @@ static NSString *const kAppVersion = @"appVersion";
 }
 
 #pragma mark - >> 懒加载部分
-
+-(MSPageControl *)pageControl{
+   return MS_LAZY(_pageControl,({
+        MSPageControl *pageControl = [[MSPageControl alloc] init];
+        pageControl.numberOfPages = self.dataImages.count;
+        pageControl.userInteractionEnabled = NO;
+        pageControl.currentPage = [self currentIndex];
+        pageControl;
+    }));
+}
 #pragma mark - 跳过按钮
 -(UIButton *)skipButton{
     return MS_LAZY(_skipButton, ({
@@ -595,6 +678,17 @@ static NSString *const kAppVersion = @"appVersion";
         playerController.showsPlaybackControls = NO;
         [playerController.player play];
         playerController;
+    }));
+}
+
+- (UIScrollView *)scrollView{
+    return MS_LAZY(_scrollView, ({
+        UIScrollView *launchScrollView = [[UIScrollView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        launchScrollView.showsHorizontalScrollIndicator = NO;
+        launchScrollView.bounces = NO;
+        launchScrollView.pagingEnabled = YES;
+        launchScrollView.delegate = self;
+        launchScrollView;
     }));
 }
 
