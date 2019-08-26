@@ -24,7 +24,7 @@
 </tr>    
 </table>
 
-#### [更新记录:](https://github.com/lztbwlkj/MSLaunchView/blob/master/CHANGELOG.md),
+#### [查看更新记录](https://github.com/lztbwlkj/MSLaunchView/blob/master/CHANGELOG.md)
 
 #### 使用方式（支持代码创建和StoryBoard创建项目）:
 
