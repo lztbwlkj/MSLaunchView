@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MSLaunchView.h"
+
 #define MSScreenW   [UIScreen mainScreen].bounds.size.width
 #define MSScreenH   [UIScreen mainScreen].bounds.size.height
 @interface AppDelegate ()<MSLaunchViewDeleagte>{

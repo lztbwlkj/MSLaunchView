@@ -143,6 +143,10 @@ typedef void (^launchViewLoadFinish)(MSLaunchView *launchView);
 @property (nonatomic, strong) UIImage *pageDotImage;
 
 #pragma mark - 新增属性
+
+/**
+ 是否为方形点，默认为NO
+ */
 @property(nonatomic, assign) BOOL dotsIsSquare;
 
 

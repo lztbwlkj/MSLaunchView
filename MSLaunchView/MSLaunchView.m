@@ -8,7 +8,6 @@
 
 #import "MSLaunchView.h"
 #import "MSLaunchOperation.h"
-#import "MSPageControl.h"
 
 #define MSHidden_TIME 1.0
 #define MSScreenW   [UIScreen mainScreen].bounds.size.width
