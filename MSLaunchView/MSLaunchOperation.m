@@ -7,6 +7,8 @@
 //
 
 #import "MSLaunchOperation.h"
+#import <WebKit/WebKit.h>
+
 @interface MSLaunchOperation(){
     CGImageSourceRef gif;
     NSDictionary *gifProperties;
@@ -116,12 +118,10 @@
     if (self) {
         NSString *gifImgName = [gifImageName stringByReplacingOccurrencesOfString:@".gif" withString:@""];
         NSData *gifData      = [NSData dataWithContentsOfFile: [[NSBundle mainBundle] pathForResource:gifImgName ofType:@"gif"]];
-        UIWebView *webView = [[UIWebView alloc] initWithFrame:frame];
+        WKWebView *webView = [[WKWebView alloc] initWithFrame:frame];
         [webView setBackgroundColor:[UIColor clearColor]];
-        [webView setScalesPageToFit:YES];
         [webView.scrollView setScrollEnabled:NO];
-        [webView loadData:gifData MIMEType:@"image/gif" textEncodingName:@"" baseURL:[NSURL URLWithString:@""]];
-        
+        [webView loadData:gifData MIMEType:@"image/gif" characterEncodingName:@"" baseURL:[NSURL URLWithString:@""]];
         UIButton *clearButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [clearButton setFrame:webView.frame];
         [clearButton setBackgroundColor:[UIColor clearColor]];
